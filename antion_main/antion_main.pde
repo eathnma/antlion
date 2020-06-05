@@ -6,20 +6,13 @@ boolean dialogue = true;
 
 import ddf.minim.*;
 Minim minim;
-
-// gameplay states
-final int LEVEL1 = 0;
-final int LEVEL2 = 1;
-final int LEVEL3 = 2;
-final int DEATH = 3;
-// commentary states
-final int LEVEL1C = 0;
-final int LEVEL2C = 1;
-final int LEVEL3C = 2;
-final int LEVEL4C = 3;
+Util myUtil;
 
 void setup() {
-  size( 800, 600 );
+  size( 450, 650 );
+  
+  // load helper class
+  myUtil = new Util();
 }
 
 void draw() {
@@ -52,7 +45,7 @@ void gameState(int lv){
     switch(lv) {
     case 1:
       println("case 1");
-      fill(153);
+      fill(myUtil.randomColor());
       rect(30,20,55,55);
       break;
 
