@@ -7,6 +7,7 @@ boolean dialogue = true;
 import ddf.minim.*;
 Minim minim;
 Util myUtil;
+Dialogue myDialogue;
 
 
 
