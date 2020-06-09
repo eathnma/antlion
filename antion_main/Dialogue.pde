@@ -1,10 +1,12 @@
-class Dialogue{
+//class Dialogue{
   
-  // pre constructor
+//  /*
+//  // pre constructor
   
-  Dialogue( // add arguments ){
-    // constructor behaviour
-  }
+//  Dialogue( // add arguments ){
+//    // constructor behaviour
+//  }
   
-  // dialogue methods
-}
+//  // dialogue methods
+//}
+//*/

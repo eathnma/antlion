@@ -8,11 +8,15 @@ import ddf.minim.*;
 Minim minim;
 Util myUtil;
 
+
+
 void setup() {
-  size( 450, 650 );
+  size( 1200, 800 );
   
   // load helper class
   myUtil = new Util();
+  
+  setupMiniGame0();
 }
 
 void draw() {
@@ -21,6 +25,7 @@ void draw() {
   //level determines both playing & dialogue gamestate. 
   //You can change the variable of "level" at the top of the document.
   gameState(level);
+  
    
   
 }
@@ -45,6 +50,7 @@ void gameState(int lv){
     switch(lv) {
     case 1:
       println("case 1");
+      drawMiniGame0();
       fill(myUtil.randomColor());
       rect(30,20,55,55);
       break;
