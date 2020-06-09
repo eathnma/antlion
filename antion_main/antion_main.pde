@@ -7,6 +7,7 @@ boolean dialogue = true;
 import ddf.minim.*;
 Minim minim;
 Util myUtil;
+Dialogue myDialogue;
 
 void setup() {
   size( 450, 650 );
@@ -45,8 +46,8 @@ void gameState(int lv){
     switch(lv) {
     case 1:
       println("case 1");
-      fill(myUtil.randomColor());
-      rect(30,20,55,55);
+      myDialogue = new Dialogue("beginning-dialogue", 1);
+      myDialogue.drawString("hi im mark");
       break;
 
     case 2:
