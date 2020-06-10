@@ -49,8 +49,10 @@ void drawMiniGame0() {
 
   // Draw Floor
   f.drawFloor();
+}
 
 
+<<<<<<< Updated upstream
 
 }
  void keyPressed() {
@@ -60,6 +62,16 @@ void drawMiniGame0() {
   void keyReleased() {
     a.keyReleased();
   }
+=======
+
+void keyPressed() {
+  a.keyPressed();
+}
+
+void keyReleased() {
+  a.keyReleased();
+}
+>>>>>>> Stashed changes
 
 ////////////////////////////////////////////////////////////////////////////////
 
