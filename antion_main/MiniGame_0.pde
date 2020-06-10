@@ -52,17 +52,7 @@ void drawMiniGame0() {
 }
 
 
-<<<<<<< Updated upstream
-
-}
- void keyPressed() {
-    a.keyPressed();
-  }
-
-  void keyReleased() {
-    a.keyReleased();
-  }
-=======
+//<<<<<<< Updated upstream
 
 void keyPressed() {
   a.keyPressed();
@@ -71,7 +61,6 @@ void keyPressed() {
 void keyReleased() {
   a.keyReleased();
 }
->>>>>>> Stashed changes
 
 ////////////////////////////////////////////////////////////////////////////////
 

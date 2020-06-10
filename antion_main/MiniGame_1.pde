@@ -1,7 +1,6 @@
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 
-Minim minim;
 AudioInput in;
 FFT fft;
 

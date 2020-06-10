@@ -1,5 +1,5 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 1;
+int level = 2;
 
 boolean game = false;
 boolean dialogue = true;
@@ -12,11 +12,19 @@ Dialogue myDialogue;
 
 
 void setup() {
+ 
+  // generic setup
   size( 1200, 800 );
+  frameRate(60);
+  //smooth();
   
+  myDialogue = new Dialogue("ethan");
+
+
   // load helper class
   myUtil = new Util();
   
+  // setup's for minigames
   setupStartScreen();
   setupMiniGame0();
   setupMiniGame1();
@@ -25,16 +33,13 @@ void setup() {
 
 void draw() {
   background(0);
-  
+
   //level determines both playing & dialogue gamestate. 
   //You can change the variable of "level" at the top of the document.
   gameState(level);
-  
-   
-  
 }
 
-void gameState(int lv){
+void gameState(int lv) {
   if (game == true) {
     switch(lv) {
     case 1:
@@ -53,7 +58,7 @@ void gameState(int lv){
   }  
   if (dialogue == true) {
     switch(lv) {
-    
+
     case 1:
       //println("case 1");
       //drawMiniGame0();
@@ -64,8 +69,10 @@ void gameState(int lv){
 
     case 2:
       // first-game dialogue
+      myDialogue.typewriteText("ethan is working on the dialogue");
       break;
-
+      
+      
     case 3:
       // second-game dialogue
       break;
