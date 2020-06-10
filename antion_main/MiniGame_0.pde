@@ -49,8 +49,6 @@ void drawMiniGame0() {
 
   // Draw Floor
   f.drawFloor();
-  edgeOfScreenHit();
-  TopOfScreenHit();
 }
 
 void keyPressed() {
@@ -61,10 +59,7 @@ void keyReleased() {
   a.keyReleased();
 }
 
-void keyReleased() {
-  a.keyReleased();
-}
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -102,6 +97,8 @@ class Antony {
 
     // Call Move Method
     update();
+    edgeOfScreenHit();
+    TopOfScreenHit();
   }
 
   // Move Method
