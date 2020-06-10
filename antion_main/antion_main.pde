@@ -52,8 +52,8 @@ void gameState(int lv){
     case 1:
       println("case 1");
       drawMiniGame0();
-      fill(myUtil.randomColor());
-      rect(30,20,55,55);
+      //fill(myUtil.randomColor());
+      //rect(30,20,55,55);
       break;
 
     case 2:

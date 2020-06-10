@@ -49,7 +49,7 @@ void drawMiniGame0() {
 
   // Draw Floor
   f.drawFloor();
-
+}
 
   void keyPressed() {
     a.keyPressed();
@@ -58,7 +58,6 @@ void drawMiniGame0() {
   void keyReleased() {
     a.keyReleased();
   }
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -201,6 +200,27 @@ class Antony {
       (p.x + p.w > a.x) &&
       (p.y < a.y + a.h) &&
       (p.h + p.y > a.y));
+  }
+  
+    // Hitting X Edges of Screen Causes Antony to Spawn on the Other Side
+  void edgeOfScreenHit() {
+
+    if (x > width) { 
+      x = 0;
+    }
+
+    if (x < 0) { 
+      x = width;
+    }
+  }
+
+  // Hitting Top of Screen Causes Antony to be Eaten by Anteater
+  void TopOfScreenHit() {
+    
+    if (y < 0) { 
+      println("ANTEATER EAT U");
+      // SWITCH SCREEN HERE
+    }
   }
 
   // keyPressed
