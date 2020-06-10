@@ -15,14 +15,18 @@ void drawMiniGame2() {
   acidX -= 0.5; 
   if (click == true) { 
     if (acidX <= 300) { 
-      acidX += 5;
+      acidX += 15;
     } else { 
-      acidX += 4.5;
+      acidX += 14.5;
     } 
     click = false;
   } 
   if (acidX < 120) { 
     println("YOU LOST!!!");
+  }
+  
+    if (acidX > 800) { 
+    println("YOU WIN!!!");
   }
 } 
 
