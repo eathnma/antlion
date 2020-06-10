@@ -20,7 +20,9 @@ public class Dialogue {
       if (frameCount %4 == 0)
         counter++;
     } else if (counter == textOne.length()) {
-      textBox = textBox + "_";
+       textBox = textBox + " _";
+       char flashingUnderscore = textBox.charAt(textBox.length() - 1);
+       // can't figure out how to flash a single string item. Will figure out that soon.
     }
     text(textBox, 0, 40, width, height);
   }
