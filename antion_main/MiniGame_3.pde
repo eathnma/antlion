@@ -97,6 +97,9 @@ void drawMiniGame3() {
 
 
 void mouseClicked() {
+  
+  mouseClickedMiniGame2();
+  
   if (stage ==1) {
     for(int i=0; i < 3; i++) {  
       Circle circle = circles.get(i);  
