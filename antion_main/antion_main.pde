@@ -10,16 +10,14 @@ Util myUtil;
 Dialogue myDialogue;
 
 
-
 void setup() {
- 
-  // generic setup
+  println(width,height);
+  // generic 
   size( 1200, 800 );
   frameRate(60);
-  //smooth();
+  smooth();
   
-  myDialogue = new Dialogue("ethan");
-
+  myDialogue = new Dialogue("test dialogue");
 
   // load helper class
   myUtil = new Util();
@@ -69,7 +67,7 @@ void gameState(int lv) {
 
     case 2:
       // first-game dialogue
-      myDialogue.typewriteText("ethan is working on the dialogue");
+      myDialogue.drawDialogue("ethan is working on the dialogue", 1, 1);
       break;
       
       
