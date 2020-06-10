@@ -1,3 +1,6 @@
+//import processing.sound.*;
+//AudioPlayer s1;
+
 public class Util {
 
   public double random(int min, int max) {
@@ -15,4 +18,12 @@ public class Util {
     
     return color(r,g,b);
   }
+  
+  //public void loadSound(){
+  //  Minim m;
+  //  m = new Minim(this);
+  //  s1 = m.loadFile("textVoice.mp3");
+  //  s1.play();
+  //}
+  
 }

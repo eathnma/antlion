@@ -6,121 +6,76 @@ public class Dialogue {
   PFont f;
   private String text;
   private int position;
+  private int counter = 0;
+
+  // x and y coordinates for textbox
+  private int xPosTextBox = 30;
+  private int yPosTextBox = height - 200;
+  private int widthTextBox = width - 60;
+  private int heightTextBox = 170;
+  private int radiusTextBox = 10;
+
+  // x and y coordinates for text
+  private int xPosText = 100;
+  private int yPosText = height - 140;
+  
+  // character attributes
+  private int charSize = 150;
+
+  // character one
+  private int xPosChar0 = 125;
+  private int yPosChar0 = height - 350;
+  // character two
+  private int xPosChar1 = width - 250;
+  private int yPosChar1 = height - 350;
 
   Dialogue(String text) {
     this.text = text;
   }
 
-  public void drawString(String text) {
-    fill(255);
-
-    int x = 10;
-    for (int i = 0; i < text.length(); i++) {
-      text(text.charAt(i), x, height/2);
-      x += 10;
-      delay(500);
-    }
+  void drawDialogue(String text, int character, int position) {  
+    character(character, position);
+    typewriteText(text);
   }
 
+  void character(int character, int position) {
+    // specify drawing class here * i'll handle the animation of the characters. Think about imageMode center
+    
+    // position 0 = left
+    if (position == 0) {
+      println("position 0");
+      fill(200);
+      rect( xPosChar0, yPosChar0, charSize, charSize );
+    }
 
+    // position 1 = right
+    if (position == 1) {
+      // position determines where the rectangle sits
+      println("position 1");
+      fill(200);
+      rect( xPosChar1, yPosChar1, charSize, charSize );
+    }
+    
+    // text box drawing
+    fill(100);
+    rect( xPosTextBox, yPosTextBox, widthTextBox, heightTextBox, radiusTextBox );
+    
+  }
 
-  //private Map<Integer, DialogueNode> nodes = new HashMap<Integer, DialogueNode>();
+  void typewriteText(String text) {
+    String textBox = text.substring(0, counter);
 
-  //public DialogueNode getNode(int id) {
-  //  return nodes.get(id);
-  //}
-
-  //public void addNode(DialogueNode node) {
-  //  this.nodes.put(node.getID(), node);
-  //}
-
-  //public int getStart() {
-  //  return 0;
-  //}
+    if (counter < text.length()) {
+      if (frameCount %4 == 0)
+        counter++;
+    } else if (counter == text.length()) {
+      textBox = textBox + " _";
+      char flashingUnderscore = textBox.charAt(textBox.length() - 1);
+      // can't figure out how to flash a single string item. Will figure out that soon.
+    }
+     
+    // print out the character one by one
+    fill(255);
+    text(textBox, xPosText, yPosText, width, height);
+  }
 }
-
-// this static tag might mess things up
-//public static class DialogueNode {
-//  private ArrayList<Integer> pointers = new ArrayList<Integer>();
-//  private ArrayList<String> labels = new ArrayList<String>();
-
-//  private String text;
-//  private int id;
-
-//  private NODE_TYPE type;
-
-//  enum NODE_TYPE {
-//    MULTIPLE_CHOICE, 
-//      LINEAR, 
-//      END, 
-//      ;
-//  }
-
-//  public DialogueNode(String text, int id) {
-//    this.text = text;
-//    this.id = id;
-//    type = NODE_TYPE.END;
-//  }
-
-//  public void addChoice(String option, int nodeId) {
-//    if (type == NODE_TYPE.LINEAR) {
-//      pointers.clear();
-//    }
-//    labels.add(option);
-//    pointers.add(nodeId);
-//    type = NODE_TYPE.MULTIPLE_CHOICE;
-//  }
-
-//  public void makeLinear(int nodeId) {
-//    pointers.clear();
-//    labels.clear();
-//    pointers.add(nodeId);
-//    type = NODE_TYPE.LINEAR;
-//  }
-
-//  public List<Integer> getPointers() {
-//    return pointers;
-//  }
-
-//  public List<String> getLabels() {
-//    return labels;
-//  }
-
-//  public NODE_TYPE getType() {
-//    return type;
-//  }
-
-//  public int getID() {
-//    return id;
-//  }
-//}
-
-//public class DialogueTraverser {
-
-//  private Dialogue dialogue;
-//  private DialogueNode currentNode;
-
-//  public DialogueTraverser(Dialogue dialogue){
-//    this.dialogue = dialogue;
-//    currentNode = dialogue.getNode(dialogue.getStart());
-//  }
-
-//  public DialogueNode getNextNode(int pointerIndex){
-//    DialogueNode nextNode = dialogue.getNode(currentNode.getPointers().get(pointerIndex));
-//    currentNode = nextNode;
-//    return nextNode;
-//  }
-
-//  public List<String> getOptions() {
-//    return currentNode.getLabels();
-//  }
-
-//  public String getText(){
-//    return currentNode.getText();
-//  }
-
-//  public NODE_TYPE getType(){
-//    return currentNode.getType();
-//  }
-
-//}
