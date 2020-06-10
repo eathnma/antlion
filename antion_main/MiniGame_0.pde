@@ -51,14 +51,15 @@ void drawMiniGame0() {
   f.drawFloor();
 
 
-  void keyPressed() {
+
+}
+ void keyPressed() {
     a.keyPressed();
   }
 
   void keyReleased() {
     a.keyReleased();
   }
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 

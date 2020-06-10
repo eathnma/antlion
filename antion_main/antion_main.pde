@@ -17,7 +17,9 @@ void setup() {
   // load helper class
   myUtil = new Util();
   
+  setupStartScreen();
   setupMiniGame0();
+  setupMiniGame3();
 }
 
 void draw() {
@@ -43,17 +45,20 @@ void gameState(int lv){
       break;
 
     case 3:
+      drawMiniGame3();
       // third level gameplay
       break;
     }
   }  
   if (dialogue == true) {
     switch(lv) {
+    
     case 1:
-      println("case 1");
-      drawMiniGame0();
-      fill(myUtil.randomColor());
-      rect(30,20,55,55);
+      //println("case 1");
+      //drawMiniGame0();
+      //fill(myUtil.randomColor());
+      //rect(30,20,55,55);
+      drawStartScreen();
       break;
 
     case 2:
