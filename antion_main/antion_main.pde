@@ -67,7 +67,7 @@ void gameState(int lv) {
 
     case 2:
       // first-game dialogue
-      myDialogue.drawDialogue("ethan is working on the dialogue", 1, 1);
+      myDialogue.drawDialogue("ethan is working on the dialogue", 0, 0);
       break;
       
       
