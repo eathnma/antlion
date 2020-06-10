@@ -32,8 +32,6 @@ public class Dialogue {
   Dialogue(String text) {
     this.text = text;
   }
-  
-  //void progressDialogue(
 
   void drawDialogue(String text, int character, int position) {  
     character(character, position);
