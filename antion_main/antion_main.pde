@@ -19,6 +19,7 @@ void setup() {
   
   setupStartScreen();
   setupMiniGame0();
+  setupMiniGame1();
   setupMiniGame3();
 }
 
@@ -37,7 +38,7 @@ void gameState(int lv){
   if (game == true) {
     switch(lv) {
     case 1:
-      // first level gameplay
+      drawMiniGame1();
       break;
 
     case 2:
