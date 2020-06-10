@@ -26,6 +26,6 @@ void drawMiniGame2() {
   }
 } 
 
-void mouseClickedMIniGame2() { 
+void mouseClickedMiniGame2() { 
   click = true;
 }
