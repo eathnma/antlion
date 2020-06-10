@@ -41,7 +41,7 @@ void gameState(int lv){
       break;
 
     case 2:
-      // second level gameplay
+      drawMiniGame2();
       break;
 
     case 3:
