@@ -1,5 +1,6 @@
 // SWITCH STATE OF GAMEPLAY
 int level = 0;
+int startTimer;
 
 boolean game = true;
 boolean dialogue = false;
@@ -14,7 +15,7 @@ void setup() {
   myUtil = new Util();
 
   // generic 
-  size( 1200, 800 );
+  size( 1200, 1024 );
   frameRate(60);
   smooth();
 
@@ -39,6 +40,7 @@ void draw() {
     }
     
     if (key == '1'){
+      startTimer = second();
       level = 1;
       println("game one");
     }

@@ -8,7 +8,7 @@ FFT fft;
 int nFreqBand = 30;
 
 int note;
-int startTimer, currentTimer;
+int currentTimer;
 int score = 0;
 
 //screen height
@@ -33,7 +33,6 @@ void setupMiniGame1() {
   in = minim.getLineIn(Minim.STEREO, 1024);
 
   noStroke();
-  startTimer = second();
 }
 
 
@@ -47,7 +46,7 @@ void drawMiniGame1()
   currentTimer = second() - startTimer;
   textSize(30);
   text("Score: " + score, 20, 50);
-  
+
   //analyzes audio from input mix
   fft.forward(in.mix);
   //for all frequency bands...
@@ -127,36 +126,35 @@ void drawMiniGame1()
 class Guide {
   float x, y, w, h;
   int note = 0;
-  
+
   float screenH = 1024;
-   
+
   Guide(float x, float y, float w, float h) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
   }
-  
+
   void draw() {
     colorMode(RGB);
-    fill(255,255,255);
+    fill(255, 255, 255);
     rect(x, y, w, h);
   }
-  
+
   //the screen is divided into 30 rows, each row correlates to a frequency band
   //the guide snaps to each row depending on frequency currently being detected
   void tick() {
     y = screenH - ((screenH/30)*note);
   }
-  
 }
 
 //////////////////////////////////////////////
 
 class Notes {
-  float x,y,w,h;
+  float x, y, w, h;
   color c;
-  
+
   Notes(float x, float y, float w, float h, color c) {
     this.x = x;
     this.y = y;
@@ -164,13 +162,13 @@ class Notes {
     this.h = h;
     this.c = c;
   }
-  
+
   void draw() {
     colorMode(RGB);
     fill(c);
     rect(x, y, w, h);
   }
-  
+
   boolean hit(Guide g) {
     boolean hit = false;
     if (x + w > g.x && x < g.x + g.w && y + h > g.y && y < g.y + g.h) {
@@ -178,7 +176,7 @@ class Notes {
     }
     return hit;
   }
-  
+
   void tick() {
     x -= 1;
   }
