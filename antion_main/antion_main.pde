@@ -89,12 +89,12 @@ void gameState(int lv) {
 
     case 1:
       // beginning dialogue
-      myDialogue.drawDialogue("beginningDialogue", 0, 0);
+      myDialogue.drawDialogue("beginningDialogue", 0);
       break;
 
     case 2:
       // first-game dialogue
-      myDialogue.drawDialogue("hehe", 0, 0);
+      myDialogue.drawDialogue("hehe", 0);
       break;
 
     case 3:

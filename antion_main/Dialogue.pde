@@ -7,6 +7,8 @@ public class Dialogue {
   private String text;
   private int position;
   private int counter = 0;
+  
+  private Map<String, Integer> beginningDialogue = new HashMap<String, Integer>();
 
   // x and y coordinates for textbox
   private int xPosTextBox = 30;
@@ -38,34 +40,44 @@ public class Dialogue {
   // 2 : ANTOGONIST 2
   // 3 : QUEEN LATIFA
 
-  void drawDialogue(String dialogue, int character, int position) {  
+  void drawDialogue(String dialogue, int position) {  
     if( dialogue == "beginningDialogue"){
        //ArrayList<String, int> beginningCommentary = new ArrayList<String, int>();
        //beginningCommentary.add(new String("i'm trying to test line 1"), new int(0));
        //beginningCommentary.add(new String("i'm trying to test line 2"), new int(0));
-       Map<String, int> beginningDialogue = new HashMap<>();
+       
        
                             //KEY : VALUE
-       beginningDialogue.put("i'm trying to test line 1", "0" );
-       beginningDialogue.put("i'm trying to test line 2", "1" );
-       beginningDialogue.put("i'm trying to test line 3", "2" );
-       beginningDialogue.put("i'm trying to test line 4", "3" );
+       beginningDialogue.put("i'm trying to test line 1", 0 );
+       beginningDialogue.put("i'm trying to test line 2", 1 );
+       beginningDialogue.put("i'm trying to test line 3", 1 );
+       beginningDialogue.put("i'm trying to test line 4", 2 );
+      
     }
     
-    character(character, position);
+    int chara = beginningDialogue.get("i'm trying to test line 4");
+    println(chara);
+    
+    character(chara, position);
     typewriteText(text);
   }
 
   void character(int character, int position) {
     // specify drawing class here * i'll handle the animation of the characters. Think about imageMode center
     
+    if(character == 0){} // antony, paste image
+    if(character == 1){} // antagonist, paste image 
+    if(character == 2){} // antagonist 2, paste image
+    if(character == 3){} // antagonist 3, paste image
+    
     // position 0 = left
     if (position == 0) {
       //println("position 0");
       fill(200);
       rect( xPosChar0, yPosChar0, charSize, charSize );
+      
     }
-
+ 
     // position 1 = right
     if (position == 1) {
       // position determines where the rectangle sits
@@ -102,33 +114,4 @@ public class Dialogue {
 
 //////////////////////////// DIALOGUE STRINGS /////////////////////////////////////
 //level one 
-ArrayList<String> commentary = new ArrayList<String>();
-ArrayList<String> beginningCommentary = new ArrayList<String>();
-ArrayList<String> levelOneCommentary = new ArrayList<String>();
-ArrayList<String> levelTwoCommentary = new ArrayList<String>();
-ArrayList<String> levelThreeCommentary = new ArrayList<String>();
-ArrayList<String> endGameCommentary = new ArrayList<String>();
-
-ArrayList<String> winningCommentary = new ArrayList<String>();
-ArrayList<String> losingCommentary = new ArrayList<String>();
-
-void stringResources(int level){
-    //myDialogue.drawDialogue("hehe", 0, 0, level);
-
-   if(level == 0){
-       //myDialogue.drawDialogue("hehe", 0, 0, level);
-
-   } else if (level == 1){
-     
-   } else if (level == 2){
-     
-   } else if (level == 3){
-     
-   } else if (level == 4){
-     
-   } else if (level == 5){
-     
-   } else if (level == 6){
-     
-   }
-}
+String antonyStrings[] = {"first string", "second string", "third string"}; 
