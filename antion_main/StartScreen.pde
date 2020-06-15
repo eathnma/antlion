@@ -2,8 +2,7 @@ boolean buttonPressed;
 int buttonX, buttonY, buttonW, buttonH;
  
 void setupStartScreen() {
-  //size(600, 600);
- 
+  
   buttonPressed = false;
  
   // Some basic parameters for a button

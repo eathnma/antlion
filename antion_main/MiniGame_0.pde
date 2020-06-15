@@ -230,12 +230,20 @@ class Antony {
   // keyPressed
   void keyPressed() {
 
-    if (key == 'a' || key == 'A') {
+    // up3, down3, left3, right3.
+    if (keyCode == UP || key == 'w' || key == 'W') up3 = true;
+    if (keyCode == DOWN || key == 's' || key == 'S') down3 = true;
+    //if (keyCode == ' ') space = true;
+
+    if (key == 'a' || key == 'A' || keyCode == LEFT) {
       left = true;
+      left3 = true;
     }
 
-    if (key == 'd' || key == 'D') {
+    if (key == 'd' || key == 'D' || keyCode == RIGHT) {
       right = true;
+      right3 = true;
+      println("going right");
     }
 
     if (key == ' ') {
@@ -246,16 +254,30 @@ class Antony {
   // keyReleased
   void keyReleased() {
 
-    if (key == 'a' || key == 'A') {
+    if (keyCode == UP || key == 'w' || key == 'W') up3 = false;
+    if (keyCode == DOWN || key == 's' || key == 'S') down3 = false;
+
+    //if (keyCode == ' ') 
+    //{
+    //  // if space is not pressed and making shooting true
+    //  // shooting is defined false in play.fire with each individual shot
+    //  space = false;
+    //  //play.shooting = true;
+    //}
+
+    if (key == 'a' || key == 'A' || keyCode == LEFT) {
       left = false;
+      left3 = false;
     }
 
-    if (key == 'd' || key == 'D') {
+    if (key == 'd' || key == 'D' || keyCode == RIGHT) {
       right = false;
+      right3 = false;
     }
 
     if (key == ' ') {
       jump = false;
+      space = false;
     }
   }
 }

@@ -1,5 +1,5 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 0;
+int level = 3;
 int startTimer;
 
 boolean game = true;
@@ -15,7 +15,7 @@ void setup() {
   myUtil = new Util();
 
   // generic 
-  size( 1200, 512 );
+  size( 1200, 800 );
   frameRate(60);
   smooth();
 
