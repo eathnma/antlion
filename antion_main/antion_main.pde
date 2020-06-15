@@ -2,8 +2,8 @@
 int level = 0;
 int startTimer;
 
-boolean game = false;
-boolean dialogue = true;
+boolean game = true;
+boolean dialogue = false;
 
 import ddf.minim.*;
 Minim minim;
@@ -15,7 +15,7 @@ void setup() {
   myUtil = new Util();
 
   // generic 
-  size( 1200, 1024 );
+  size( 1200, 512 );
   frameRate(60);
   smooth();
 

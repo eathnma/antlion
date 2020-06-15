@@ -51,6 +51,7 @@ public class Dialogue {
        beginningDialogue.put("i'm trying to test line 1", 0 );
        beginningDialogue.put("i'm trying to test line 2", 1 );
        beginningDialogue.put("i'm trying to test line 3", 1 );
+       beginningDialogue.put("Hello World!", 1);
        beginningDialogue.put("i'm trying to test line 4", 2 );
       
     }
