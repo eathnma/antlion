@@ -27,3 +27,25 @@ public class Util {
   //}
   
 }
+
+public class StringIntegerPair{
+  private String string;
+  private int integer;
+  
+  public String getString(){
+    return string;
+  }
+  
+  public int getInteger() {
+    return integer;
+  }
+  
+  public void setString(String string) {
+    this.string = string;
+  }
+  
+  public void setInteger(int integer) {
+    this.integer = integer;
+  }
+  
+}

@@ -2,8 +2,8 @@
 int level = 0;
 int startTimer;
 
-boolean game = true;
-boolean dialogue = false;
+boolean game = false;
+boolean dialogue = true;
 
 import ddf.minim.*;
 Minim minim;
@@ -26,6 +26,7 @@ void setup() {
   setupMiniGame0();
   setupMiniGame1();
   setupMiniGame3();
+ 
 }
 
 void draw() {
@@ -33,8 +34,8 @@ void draw() {
   //level determines both playing & dialogue gamestate. 
   //You can change the variable of "level" at the top of the document.
   if (keyPressed) {
-    
-    if (key == '0'){
+
+    if (key == '0') {
       level = 0;
       println("game zero");
     }
@@ -45,16 +46,15 @@ void draw() {
       println("game one");
     }
 
-    if (key == '2'){
+    if (key == '2') {
       level = 2;
       println("game two");
     }
-  
-    if (key == '3'){
+
+    if (key == '3') {
       level = 3;
       println("game three");
     }
-    
   }
 
   gameState(level);
@@ -85,17 +85,19 @@ void gameState(int lv) {
     switch(lv) {
 
     case 0:
+      // starting screen dialogue
       drawStartScreen();
       break;
 
     case 1:
+      // beginning dialogue
+      myDialogue.drawDialogue("beginningDialogue", 0);
       break;
 
     case 2:
       // first-game dialogue
-      myDialogue.drawDialogue("hehe", 0, 0);
+      myDialogue.drawDialogue("hehe", 0);
       break;
-
 
     case 3:
       // second-game dialogue
