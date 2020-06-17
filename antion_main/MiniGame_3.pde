@@ -1,186 +1,338 @@
-ArrayList<Circle> circles;
-
-int stage = 1;
-int timer = 100;
+PImage raidImg, antLionImg;
+boolean up3, down3, left3, right3, space3;
+PVector upForce = new PVector (0, -2);
+PVector downForce = new PVector (0, 2);
+PVector leftForce = new PVector (-2, 0);
+PVector rightForce = new PVector (2, 0);
 
 void setupMiniGame3() {
-  
-  circles = new ArrayList<Circle>();
-    
-      for(int i=0; i < 7; i++) { 
-       circles.add(new Circle(random(width/3, width-44), random(height/4, height/4*3), 88, 11, 214, 160));
-       circles.add(new Circle(random(width/3, width-44), random(height/4, height/4*3), 88, 255, 0, 0));
-       circles.add(new Circle(random(width/3, width-44), random(height/4, height/4*3), 88, 98, 98, 155));
-       circles.add(new Circle(random(width/3, width-44), random(height/4, height/4*3), 88, 255, 134, 146));
-       circles.add(new Circle(random(width/3, width-44), random(height/4, height/4*3), 88, 176, 0, 176));
-       circles.add(new Circle(random(width/3, width-44), random(height/4, height/4*3), 88, 255, 214, 11));
-       circles.add(new Circle(random(width/3, width-44), random(height/4, height/4*3), 88, 131, 255, 236));
-       }    
+  raidImg = loadImage("raid.png");
+  antLionImg = loadImage("antlion.png");
+
+  play = new Player(40, new PVector(179, 541), new PVector(0, 0));
+  antilla = new Antilla( 100, new PVector(width/2, 100), new PVector(-3, 0));
 }
 
 void drawMiniGame3() {
-  background(255);
   
-  if (stage==1){
-    for(int i=0; i < 3; i++) {                          
-       Circle circle = circles.get(i);                                
-       circle.display();  
-       circle.w = 88;
-       }
-       fill(0);
-       textSize(28);
-       text("Select the", width/2, height/5-40);
-       fill(255, 0, 0);
-       text("green", width/2, height/5);
-       fill(0);
-       text("circle", width/2+85, height/5);
-  } 
+  play.update();
+  antilla.update();
   
-  if (stage==2){
-    textSize(54);
-    text("Good Job!", width/3-20, height/2);
-    timer--;
-     if (timer < 0) {
-     stage=3; 
-     timer=100;
-     }  
-  } 
-  if (stage==3){
-    for(int i=0; i < 7; i++) {                          
-      Circle circle = circles.get(i);                                
-      circle.display();    
-      circle.w = 55; 
-      }
-      fill(0);
-      textSize(28);
-      text("Select the", width/2, height/5-40);
-      fill(0, 255, 0);
-      text("pink", width/2, height/5);
-      fill(0);
-      text("circle", width/2+85, height/5);
-      }
-   if (stage==4){
-    textSize(54);
-    text("Good Job!", width/3-20, height/2);
-    timer--;
-     if (timer < 0) {
-     stage=5; 
-     timer=100;
-     }  
+  // movement options
+  if (up3) play.accelerate(upForce);
+  if (down3) play.accelerate(downForce);
+  if (left3) play.accelerate(leftForce);
+  if (right3) play.accelerate(rightForce);
+}
+
+class Player extends Chara {
+
+  // antony shoots raid at the boss.
+  ArrayList <Projectile> raidList = new ArrayList<Projectile>(); 
+
+  // determines the raid dots beside antony
+  int fullCharge = 90;
+
+  // determines the shot damage
+  int shotDamage;
+
+  // whether shooting is true or not
+  boolean shooting;
+  boolean reload;
+
+  Player(int diam, PVector pos, PVector vel) {
+    super(diam, pos, vel);
+    pos = new PVector ( xpos, ypos );
+    vel = new PVector ( xspeed, yspeed );
+    health = 3;
   }
-  if (stage==5){
-    for(int i=0; i < 15; i++) {                          
-      Circle circle = circles.get(i);                                
-      circle.display();    
-      circle.w = 35; 
+
+  void update() {
+    checkProjectile();
+    reload();
+    super.update();
+    checkWalls();
+  }
+
+  void checkProjectile() {
+    for (int i = 0; i < raidList.size(); i++) {
+      Projectile p = raidList.get(i);
+      p.update();
+
+      // if bullet surpasses certain screen height, remove from arraylist
+      if (p.pos.y <= -10) {
+        p.removeBullet(raidList);
       }
-      fill(0);
-      textSize(28);
-      text("Select the", width/2, height/5-40);
-      fill(188, 0, 188);
-      text("blue", width/2, height/5);
-      fill(0);
-      text("circle", width/2+85, height/5);
+    }
+
+    if ( space3 == false & shooting) {
+      play.fire();
+      if ( fullCharge < 0) {
+        fullCharge = 1;
       }
-   if (stage ==6) {
-      textSize(54);
-      text("Win!", width/2, height/2);
-   }   
-   if (stage ==7) {
-      textSize(54);
-      text("Lose :(", width/3, height/2);
-      timer--;
-      if (timer <0) stage=1;
-   }
+    }
 
+    if ( space3 == true) {
+      fullCharge--;
+    }
+
+    if ( fullCharge <= 0) fullCharge = 0;
+
+    //println(fullCharge);
+  }
+
+  void fire() {
+    //different sizes for the rectangles
+    if ( fullCharge < 90 && fullCharge > 75 )
+    {
+      raidList.add( new Projectile( pos.copy(), new PVector( 0, -10), 10, 50, raidImg ) );
+      shotDamage = 1;
+    } else if ( fullCharge < 75 && fullCharge > 60  )
+    {
+      raidList.add( new Projectile( pos.copy(), new PVector( 0, -15), 15, 60, raidImg ) );
+      shotDamage = 2;
+    } else if ( fullCharge < 60 && fullCharge > 45  )
+    {
+      raidList.add( new Projectile( pos.copy(), new PVector( 0, -20), 20, 70, raidImg ) );
+      shotDamage = 3;
+    } else if ( fullCharge < 45 && fullCharge > 30 )
+    {
+      raidList.add( new Projectile( pos.copy(), new PVector( 0, -25), 25, 80, raidImg ) );
+      shotDamage = 4;
+    } else if ( fullCharge < 30 && fullCharge > 15 )
+    {
+      raidList.add( new Projectile( pos.copy(), new PVector( 0, -30), 30, 90, raidImg ) );
+      shotDamage = 5;
+    } else if ( fullCharge < 15 )
+    {
+      raidList.add( new Projectile( pos.copy(), new PVector( 0, -35), 40, 100, raidImg ) );
+      shotDamage =  6;
+    }
+
+    reload = true;
+    shooting = false;
+  }
+
+  void reload() {
+    if (reload) {
+      fullCharge++;
+      if ( fullCharge >= 90)
+      {
+        reload = false;
+      }
+    }
+  }
+
+  void drawCharacter() {
+    // add antony here...
+    float my = constrain(pos.y, 0, 775 );
+
+    pushMatrix();
+    // antony slowly dying :(
+    if ( this.health == 3) fill( #E67E22 );
+    else if ( this.health == 2) fill( #E77714 );
+    else if ( this.health == 1) fill( #D86C0D );
+    else if ( this.health <= 0) fill( #80420C );
+
+    //the square in the middle
+    noStroke();
+    translate( pos.x, my );
+    // body
+    rect( 0, 0, diam, diam, 160 );
+
+    int rounded = 30;
+    // small cans
+    if ( fullCharge < 90 )
+    {
+      rect( -15, 0, 10, 10, rounded );
+    }
+    if ( fullCharge < 75 )
+    {
+      rect( 45, 0, 10, 10, rounded );
+    }
+    if ( fullCharge < 60 )
+    {
+      rect( -15, 15, 10, 10, rounded );
+    }
+    if ( fullCharge < 45 )
+    {
+      rect( 45, 15, 10, 10, rounded );
+    }
+    if (fullCharge < 30 )
+    { 
+      rect( -15, 30, 10, 10, rounded );
+    }
+    if (fullCharge < 15 )
+    {
+      rect( 45, 30, 10, 10, rounded );
+    }
+
+    popMatrix();
+  }
+
+  void checkWalls()
+  {
+    if ( pos.x < 0 - diam ) {
+      pos.x = width;
+    }
+    if ( pos.x > width ) {
+      pos.x = 0;
+    }
+  }
 }
 
+class Projectile {
+  PVector pos, vel;
+  float xspeed, yspeed, w, h, small;
+  PImage img;
 
-void mouseClicked() {
-  
-  mouseClickedMiniGame2();
-  
-  if (stage ==1) {
-    for(int i=0; i < 3; i++) {  
-      Circle circle = circles.get(i);  
-       if ((mouseX < circle.x+circle.w/2) && 
-          (mouseX > circle.x-circle.w/2) && 
-          (mouseY < circle.y+circle.w) &&
-          (mouseY>circle.y-circle.w/2)&&
-          (circle.c == 11)) {
-          stage = 2; 
-        } else  if 
-          ((mouseX < circle.x+circle.w/2) && 
-          (mouseX > circle.x-circle.w/2) && 
-          (mouseY < circle.y+circle.w) &&
-          (mouseY>circle.y-circle.w/2)&&
-         (circle.c != 11)) {
-          stage = 7;
-           }
-       }
-      } 
-      
-   if(stage==3){
-    for(int i=0; i < 5; i++) {  
-      Circle c = circles.get(i);  
-       
-       if ((mouseX < c.x+c.w/2) && 
-          (mouseX > c.x-c.w/2) && 
-          (mouseY < c.y+c.w) &&
-          (mouseY>c.y-c.w/2)&&
-          (c.c == 255)) {
-          stage = 4; 
-        } else if 
-          ((mouseX < c.x+c.w/2) && 
-          (mouseX > c.x-c.w/2) && 
-          (mouseY < c.y+c.w) &&
-          (mouseY>c.y-c.w/2)&&
-          (c.c != 255)) {
-          stage = 7;
+  Projectile ( PVector pos, PVector vel, float w, float h, PImage img) {
+    this.pos = pos;
+    this.vel = vel;
+    this.w = w;
+    this.h = h;
+    this.img = img;
+  }
+
+  void update() {
+    drawbullet();
+    pos.add(vel);
+  }
+
+  void drawbullet()
+  {   
+    pushMatrix();
+    fill(255);
+    translate( pos.x + 15, pos.y );
+    image(img, 0, 0, w, h );
+    popMatrix();
+  }
+
+  void move() {
+    pos.add(vel);
+  }
+
+  void removeBullet(ArrayList list) {
+    list.remove(this);
+  }
+
+  // hit detection between circle and rectangle retrieved from
+  //http://www.jeffreythompson.org/collision-detection/circle-rect.php
+  // reformatted for game purposes
+
+  boolean hit(Chara c)
+  {
+    // temporary variables to set edges for testing
+    float testX = c.pos.x;
+    float testY = c.pos.y;
+
+    if ( c.pos.x < pos.x )         testX = pos.x;
+    else if ( c.pos.x > pos.x + w) testX = pos.x+ w;
+    if ( c.pos.y < pos.y )         testY = pos.y;
+    else if ( c.pos.y > pos.y+ h ) testY = pos.y+h ;
+
+    float distX = c.pos.x - testX;
+    float distY = c.pos.y - testY;
+    float distance = sqrt( (distX*distX) + (distY*distY) );    
+
+    // if the distance is less than the radius, collision!
+    if (distance <= c.diam/2) {
+      return true;
+    }
+    return false;
+  }
+}
+
+class Antilla extends Chara {
+
+  // antony shoots raid at the boss.
+  ArrayList <Projectile> antLionList = new ArrayList<Projectile>(); 
+
+  // how frequently the each of the antlions come out
+  boolean bossProjectile;
+  float projectileTimer = 10;
+
+  // determines the angle of the anteater shooting
+  float noseAngle;
+
+  Antilla( int diam, PVector pos, PVector vel) {
+    super(diam, pos, vel);
+    diam = 5;
+    health = 100;
+  }
+
+  void update() {
+    super.update();
+    bulletDetection();
+    bossShooting();
+    bossHealth();
+  }
+
+  void drawCharacter() {
+    pushMatrix();
+    fill(255);
+    translate( pos.x, pos.y );
+    ellipse( 0, 0, diam, diam );
+    popMatrix();
+  }
+
+  void moveCharacter() {
+    pos.add(vel);
+
+    // TRACKS each bounce
+    float bounce = 1.0;
+
+    if (pos.x + diam >= 1200 || pos.x - diam <= 0) {
+      bounce = bounce + 0.08;
+      vel.set(vel.x * -1 * bounce, vel.y);
+    }
+  }
+
+  void bossHealth() {
+    float m = map(health, 0, 100, 0, 1200);
+    pushMatrix();
+    fill(255, 0, 0);
+    rect(0, 0, m, 30);
+    popMatrix();
+  }
+
+  void bossShooting() {
+    // if the boss reaches a certain point in the level
+    if (projectileTimer <= 10) {
+      // start counting down the timer.
+      projectileTimer--;
+
+      if (projectileTimer <= 0) {
+        vel.y = 0;
+        noseAngle = random(-10, 10);
+        antLionList.add( new Projectile( new PVector(pos.x - 60, pos.y), new PVector(noseAngle, 10), 100, 100, antLionImg ) );
+        projectileTimer = 10;
+      }
+
+      for (int i = 0; i < antLionList.size(); i++) {
+        Projectile p = antLionList.get(i);
+        p.update();
+
+        if (p.hit(play)) {
+          play.health = play.health - 1;
         }
-       }
-      }  
-    if(stage==5){
-    for(int i=0; i < 15; i++) {  
-      Circle c = circles.get(i);  
-       
-       if ((mouseX < c.x+c.w/2) && 
-          (mouseX > c.x-c.w/2) && 
-          (mouseY < c.y+c.w) &&
-          (mouseY>c.y-c.w/2)&&
-          (c.c == 98)) {
-          stage = 6; 
-        } else  if 
-          ((mouseX < c.x+c.w/2) && 
-          (mouseX > c.x-c.w/2) && 
-          (mouseY < c.y+c.w) &&
-          (mouseY>c.y-c.w/2)&&
-          (c.c != 98)) {
-          stage = 7;
-        }
-       }
-      }     
-}
+      }
+    }
+  }
 
-class Circle {
-  float x;
-  float y;
-  float w;
-  int c;
-  int c2;
-  int c3;
-  
-  Circle(float posx, float posy, float wid, int col, int col2, int col3) {
-  x=posx;
-  y=posy;
-  w=wid;
-  c=col;
-  c2=col2;
-  c3=col3;
-}
+  void bulletDetection() {
 
-  void display(){
-  fill(c, c2, c3);
-  ellipse(x, y, w, w);
+    for (int i = 0; i < play.raidList.size(); i++) {
+      Projectile p = play.raidList.get(i);
+
+      if (p.hit(this)) {
+        play.raidList.remove(i);
+        this.health = health - play.shotDamage;
+        println(health);
+      }
+    }
+
+    if (health <= 0) {
+    } // send to end game credits.
   }
 }

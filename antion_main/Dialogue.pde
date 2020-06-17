@@ -46,13 +46,12 @@ public class Dialogue {
        //beginningCommentary.add(new String("i'm trying to test line 1"), new int(0));
        //beginningCommentary.add(new String("i'm trying to test line 2"), new int(0));
        
-       
                             //KEY : VALUE
        beginningDialogue.put("i'm trying to test line 1", 0 );
        beginningDialogue.put("i'm trying to test line 2", 1 );
        beginningDialogue.put("i'm trying to test line 3", 1 );
+       beginningDialogue.put("Hello World!", 1);
        beginningDialogue.put("i'm trying to test line 4", 2 );
-      
     }
     
     int chara = beginningDialogue.get("i'm trying to test line 4");

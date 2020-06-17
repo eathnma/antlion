@@ -1,0 +1,22 @@
+-CONTROLS-
+
+WASD to move
+
+space to shoot
+
+charge up for a larger shot, and continue shooting until the shooting Timer falls to 0
+
+-POTENTIAL ECO-POINTS-
+
+-the charge shot does different damage depending on how long you hold it for
+
+- the boss shoots its bullets in a random cone, each of the bullets decrement the player's health by 0.01;
+
+- health function is mapped to a rectangle shown at the bottom
+
+- animation for the reloading, and charging, and even death.
+
+- two waves.                       
+
+
+

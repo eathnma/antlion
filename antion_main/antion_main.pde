@@ -1,21 +1,24 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 0;
+int level = 3;
 int startTimer;
 
-boolean game = false;
-boolean dialogue = true;
+boolean game = true;
+boolean dialogue = false;
 
 import ddf.minim.*;
 Minim minim;
 Util myUtil;
 Dialogue myDialogue;
 
+Player play;
+Antilla antilla;
+
 void setup() {
   // load helper class
   myUtil = new Util();
 
   // generic 
-  size( 1200, 1024 );
+  size( 1200, 800 );
   frameRate(60);
   smooth();
 
