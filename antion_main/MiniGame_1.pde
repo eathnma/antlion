@@ -5,14 +5,14 @@ AudioInput in;
 FFT fft;
 
 //# of frequency band rows detected
-int nFreqBand = 30;
+int nFreqBand = 10;
 
 int note;
 int currentTimer;
 int score = 0;
 
 //screen height
-int h = 1024;
+int h = 800;
 float guideY = h/nFreqBand;
 float guideSize = h/nFreqBand;
 
@@ -127,7 +127,7 @@ class Guide {
   float x, y, w, h;
   int note = 0;
 
-  float screenH = 1024;
+  float screenH = 800;
 
   Guide(float x, float y, float w, float h) {
     this.x = x;
@@ -145,7 +145,7 @@ class Guide {
   //the screen is divided into 30 rows, each row correlates to a frequency band
   //the guide snaps to each row depending on frequency currently being detected
   void tick() {
-    y = screenH - ((screenH/30)*note);
+    y = screenH - ((screenH/nFreqBand)*note);
   }
 }
 
