@@ -1,6 +1,8 @@
 // SWITCH STATE OF GAMEPLAY
 int level = 3;
 int startTimer;
+int goodTimer;
+int badTimer;
 
 boolean game = true;
 boolean dialogue = false;
@@ -28,6 +30,7 @@ void setup() {
   setupStartScreen();
   setupMiniGame0();
   setupMiniGame1();
+  setupMiniGame2();
   setupMiniGame3();
  
 }
@@ -50,6 +53,8 @@ void draw() {
     }
 
     if (key == '2') {
+      goodTimer = second();
+      badTimer = second();
       level = 2;
       println("game two");
     }
