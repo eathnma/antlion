@@ -45,6 +45,7 @@ void setupMiniGame1() {
 void drawMiniGame1()
 {
   background(0);
+  imageMode(CORNER);
   image(bg_MiniGame1, 0,0);
   currentTimer = second() - startTimer;
   fill(255,255,255);

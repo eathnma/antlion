@@ -19,6 +19,7 @@ void setupMiniGame2() {
 
 void drawMiniGame2() { 
   background(0);
+  imageMode(CORNER);
   image(bg_MiniGame2, 0,0);
   //antony 
   //fill(255, 255, 255); 

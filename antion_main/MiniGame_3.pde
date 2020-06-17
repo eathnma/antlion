@@ -1,4 +1,4 @@
-PImage bg_MiniGame3, raidImg, antLionImg, tdAntony, tdAntilla;
+PImage bg_MiniGame3, raidImg, antLionImg, tdAntony, tdAntonyHurt1, tdAntonyHurt2, tdAntonyDead, tdAntilla;
 boolean up3, down3, left3, right3, space3;
 PVector upForce = new PVector (0, -2);
 PVector downForce = new PVector (0, 2);
@@ -10,6 +10,9 @@ void setupMiniGame3() {
   antLionImg = loadImage("antlion.png");
   bg_MiniGame3 = loadImage("game4.png");
   tdAntony = loadImage("Top_Down Antony.png");
+  tdAntonyHurt1 = loadImage("Top_Down Antony_Hurt1.png");
+  tdAntonyHurt2 = loadImage("Top_Down Antony_Hurt2.png");
+  tdAntonyDead = loadImage("Top_Down AntonyDead.png");
   tdAntilla = loadImage("AntillaTheHunTopDown.png");
 
   play = new Player(40, new PVector(179, 541), new PVector(0, 0));
@@ -17,6 +20,7 @@ void setupMiniGame3() {
 }
 
 void drawMiniGame3() {
+  imageMode(CORNER);
   image(bg_MiniGame3, 0,0);
   play.update();
   antilla.update();
@@ -131,19 +135,29 @@ class Player extends Chara {
     float my = constrain(pos.y, 0, 775 );
 
     pushMatrix();
-    // antony slowly dying :(
-    if ( this.health == 3) fill( #E67E22 );
-    else if ( this.health == 2) fill( #E77714 );
-    else if ( this.health == 1) fill( #D86C0D );
-    else if ( this.health <= 0) fill( #80420C );
-
-    //the square in the middle
     noStroke();
     translate( pos.x, my );
+    //the square in the middle
     // body
-    rect( 0, 0, diam, diam, 160 );
+    //rect( 0, 0, diam, diam, 160 );
     tdAntony.resize(diam,diam);
-    image(tdAntony, 0,0);
+    tdAntonyHurt1.resize(diam,diam);
+    tdAntonyHurt2.resize(diam,diam);
+    tdAntonyDead.resize(diam,diam);
+    // antony slowly dying :(
+    if ( this.health == 3) {
+      image(tdAntony, 0,0);
+      //fill( #E67E22 );
+    } else if ( this.health == 2) {
+      image(tdAntonyHurt1, 0,0);
+      //fill( #E77714 );
+    } else if ( this.health == 1) {
+      image(tdAntonyHurt2, 0,0);
+      //fill( #D86C0D );
+    } else if ( this.health <= 0) {
+      image(tdAntonyDead, 0,0);
+      //fill( #80420C );
+    }
 
     int rounded = 30;
     // small cans
