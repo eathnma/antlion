@@ -4,6 +4,7 @@ import ddf.minim.analysis.*;
 AudioInput in;
 FFT fft;
 PImage bg_MiniGame1;
+PImage antony_0;
 
 //# of frequency band rows detected
 int nFreqBand = 10;
@@ -27,6 +28,7 @@ ArrayList<Notes> notes = new ArrayList<Notes>();
 
 void setupMiniGame1() {
   bg_MiniGame1 = loadImage("game2.png");
+  antony_0 = loadImage("Antony__0.png");
 
   //minim object initialization
   minim = new Minim(this);
@@ -46,6 +48,7 @@ void drawMiniGame1()
   background(0);
   image(bg_MiniGame1, 0,0);
   currentTimer = second() - startTimer;
+  fill(255,255,255);
   textSize(30);
   text("Score: " + score, 20, 50);
 
@@ -139,9 +142,11 @@ class Guide {
   }
 
   void draw() {
-    colorMode(RGB);
-    fill(255, 255, 255);
-    rect(x, y, w, h);
+    //colorMode(RGB);
+    //fill(255, 255, 255);
+    //rect(x, y, w, h);
+    antony_0.resize(100,100);
+    image(antony_0, x+20,y-10);
   }
 
   //the screen is divided into 30 rows, each row correlates to a frequency band
