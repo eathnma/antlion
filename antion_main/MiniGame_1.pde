@@ -3,8 +3,7 @@ import ddf.minim.analysis.*;
 
 AudioInput in;
 FFT fft;
-PImage bg_MiniGame1;
-PImage antony_0;
+PImage bg_MiniGame1, antony_0;
 
 //# of frequency band rows detected
 int nFreqBand = 10;

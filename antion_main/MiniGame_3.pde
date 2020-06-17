@@ -1,4 +1,4 @@
-PImage raidImg, antLionImg;
+PImage bg_MiniGame3, raidImg, antLionImg, tdAntony, tdAntilla;
 boolean up3, down3, left3, right3, space3;
 PVector upForce = new PVector (0, -2);
 PVector downForce = new PVector (0, 2);
@@ -8,13 +8,16 @@ PVector rightForce = new PVector (2, 0);
 void setupMiniGame3() {
   raidImg = loadImage("raid.png");
   antLionImg = loadImage("antlion.png");
+  bg_MiniGame3 = loadImage("game4.png");
+  tdAntony = loadImage("Top_Down Antony.png");
+  tdAntilla = loadImage("AntillaTheHunTopDown.png");
 
   play = new Player(40, new PVector(179, 541), new PVector(0, 0));
   antilla = new Antilla( 100, new PVector(width/2, 100), new PVector(-3, 0));
 }
 
 void drawMiniGame3() {
-  
+  image(bg_MiniGame3, 0,0);
   play.update();
   antilla.update();
   
@@ -139,6 +142,8 @@ class Player extends Chara {
     translate( pos.x, my );
     // body
     rect( 0, 0, diam, diam, 160 );
+    tdAntony.resize(diam,diam);
+    image(tdAntony, 0,0);
 
     int rounded = 30;
     // small cans
@@ -270,9 +275,11 @@ class Antilla extends Chara {
 
   void drawCharacter() {
     pushMatrix();
-    fill(255);
+    //fill(255);
     translate( pos.x, pos.y );
-    ellipse( 0, 0, diam, diam );
+    //ellipse( 0, 0, diam, diam );
+    tdAntilla.resize(diam,diam);
+    image(tdAntilla, -diam/2,-diam/2);
     popMatrix();
   }
 
