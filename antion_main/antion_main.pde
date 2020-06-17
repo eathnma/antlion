@@ -10,6 +10,9 @@ Minim minim;
 Util myUtil;
 Dialogue myDialogue;
 
+Player play;
+Antilla antilla;
+
 void setup() {
   // load helper class
   myUtil = new Util();
