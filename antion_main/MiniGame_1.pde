@@ -66,37 +66,37 @@ void drawMiniGame1()
 
   //spawns in notes based on seconds passed since level started
   if (currentTimer == 1) {
-    notes.add(new Notes(width, height - ((height/nFreqBand) * 9), 1, guideSize, red));
+    notes.add(new Notes(width, height - ((height/nFreqBand) * 9), 2, guideSize, red));
   } 
   if (currentTimer == 2) {
-    notes.add(new Notes(width, height - ((height/nFreqBand) * 8), 1, guideSize, blue));
+    notes.add(new Notes(width, height - ((height/nFreqBand) * 8), 2, guideSize, blue));
   } 
   if (currentTimer == 3) {
-    notes.add(new Notes(width, height - ((height/nFreqBand) * 9), 1, guideSize, red));
+    notes.add(new Notes(width, height - ((height/nFreqBand) * 9), 2, guideSize, red));
   } 
   if (currentTimer >= 4 && currentTimer <= 6) {
-    notes.add(new Notes(width, height - ((height/nFreqBand) * 6), 1, guideSize, green));
+    notes.add(new Notes(width, height - ((height/nFreqBand) * 6), 2, guideSize, green));
   } 
   if (currentTimer == 8) {
-    notes.add(new Notes(width, height - ((height/nFreqBand) * 9), 1, guideSize, red));
+    notes.add(new Notes(width, height - ((height/nFreqBand) * 9), 2, guideSize, red));
   } 
   if (currentTimer == 9) {
-    notes.add(new Notes(width, height - ((height/nFreqBand) * 8), 1, guideSize, blue));
+    notes.add(new Notes(width, height - ((height/nFreqBand) * 8), 2, guideSize, blue));
   } 
   if (currentTimer >= 10 && currentTimer < 12) {
-    notes.add(new Notes(width, height - ((height/nFreqBand) * 7), 1, guideSize, yellow));
+    notes.add(new Notes(width, height - ((height/nFreqBand) * 7), 2, guideSize, yellow));
   } 
   if (currentTimer == 12) {
-    notes.add(new Notes(width, height - ((height/nFreqBand) * 6), 1, guideSize, green));
+    notes.add(new Notes(width, height - ((height/nFreqBand) * 6), 2, guideSize, green));
   } 
   if (currentTimer >= 13 && currentTimer < 15) {
-    notes.add(new Notes(width, height - ((height/nFreqBand) * 7), 1, guideSize, yellow));
+    notes.add(new Notes(width, height - ((height/nFreqBand) * 7), 2, guideSize, yellow));
   } 
   if (currentTimer == 15) {
-    notes.add(new Notes(width, height - ((height/nFreqBand) * 8), 1, guideSize, blue));
+    notes.add(new Notes(width, height - ((height/nFreqBand) * 8), 2, guideSize, blue));
   } 
   if (currentTimer == 16) {
-    notes.add(new Notes(width, height - ((height/nFreqBand) * 7), 1, guideSize, yellow));
+    notes.add(new Notes(width, height - ((height/nFreqBand) * 7), 2, guideSize, yellow));
   }
 
 
@@ -184,6 +184,6 @@ class Notes {
   }
 
   void tick() {
-    x -= 1;
+    x -= 1.5;
   }
 }
