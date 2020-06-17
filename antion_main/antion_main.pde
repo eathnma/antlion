@@ -15,7 +15,7 @@ void setup() {
   myUtil = new Util();
 
   // generic 
-  size( 1200, 1024 );
+  size( 1200, 800 );
   frameRate(60);
   smooth();
 
