@@ -69,7 +69,6 @@ void drawMiniGame2() {
       // SWITCH SCREEN HERE
       imageMode(CORNER);
       fadeOut = true;
-      dialogue = true;
   }
 } 
 

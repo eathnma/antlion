@@ -30,12 +30,3 @@ void drawStartScreen() {
     text("Click to Start", buttonX+15, buttonY+buttonW+30);
   }
 }
-
-void mousePressed() {
-  if (mouseX > buttonX && 
-    mouseX < buttonX+buttonW && 
-    mouseY > buttonY && 
-    mouseY < buttonY+buttonH+buttonW+30) {
-    fadeOut = true;
-  }
-}

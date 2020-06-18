@@ -1,5 +1,5 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 4;
+int level = 0;
 int startTimer;
 int goodTimer;
 int badTimer;
@@ -31,9 +31,9 @@ AudioPlayer minigame1Song;
 AudioPlayer minigame2Song;    
 AudioPlayer minigame3Song;
 
-int narration1Timer =  14;
-int narration2Timer = 11;
-int narration3Timer = 8;
+int narration1Timer = 1400;
+int narration2Timer = 1100;
+int narration3Timer = 800;
 
 boolean narration1Finished;
 
@@ -128,7 +128,7 @@ void gameState(int lv) {
 
     case 1:
       drawMiniGame1();
-      if (fadeOut == true){
+      if (fadeOut == true) {
         fadeOut(4, "game");
       }
 
@@ -145,11 +145,11 @@ void gameState(int lv) {
 
     case 2:
       drawMiniGame2();
-      println(fadeOut, dialogue);
+      println(fadeOut, dialogue, game, level);
       if (fadeOut == true) {
         fadeOut(5, "game");
       }
-      
+
       // Play Minigame 1 Song
       minigame2Song.play();
       minigame2Song.setGain(-15);
@@ -182,6 +182,8 @@ void gameState(int lv) {
     switch(lv) {
 
     case 0:
+      if (mousePressed && mouseX > buttonX && mouseX < buttonX+buttonW && mouseY > buttonY && mouseY < buttonY+buttonH+buttonW+30) 
+        fadeOut = true;
       if (fadeOut == true) fadeOut(0, "narrative");
       drawStartScreen();
       break;
@@ -196,8 +198,8 @@ void gameState(int lv) {
     case 2:
       background(bg_MiniGame0);
       myDialogue.counter(dialogueOneEnd, 2, 10); //multiple people speaking 
-      if(dialogueCount >= dialogueOneEnd.size()) fadeOut = true;
-      
+      if (dialogueCount >= dialogueOneEnd.size()) fadeOut = true;
+
       if (fadeOut == true) fadeOut(3, "dialogue");
       break;
 
@@ -224,7 +226,7 @@ void gameState(int lv) {
 
     case 6:
       // lose state dialogue
-   
+
       break;
     }
   }
@@ -361,7 +363,7 @@ void fadeOut(int lv, String type) {
   if ( transparency < 255 ) {
     transparency = transparency + 2;
   }  
-  
+
   if ( transparency >= 255 ) {
     fadeIn = true;
     fadeOut = false;
@@ -377,9 +379,10 @@ void fadeOut(int lv, String type) {
       narration = false;
       println("this true");
     }
-    
-    if( type == "game"){
+
+    if ( type == "game") {
       game = false;
+      dialogue = true;
     }
   }
 }
