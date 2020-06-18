@@ -154,6 +154,7 @@ void gameState(int lv) {
       break;
 
     case 1:
+      
       myDialogue.counter(dialogueOne);
       break;
 
