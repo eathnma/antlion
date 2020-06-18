@@ -137,10 +137,7 @@ void drawMiniGame1()
     println("YOU ARE WORTHY...");
     // SWITCH SCREEN HERE
     imageMode(CORNER);
-    game=false;
-    dialogue=true;
-    dialogueCount=0;
-    level=3;
+    fadeOut = true;
   }
 
   if (currentTimer >= 31 && score < 500) {
