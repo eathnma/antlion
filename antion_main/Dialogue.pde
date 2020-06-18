@@ -71,7 +71,6 @@ public class Dialogue {
 
     if (character == 2) {
       // antagonist 2, paste image
-      println(dialogueCount);
       if (dialogueCount == 0 || dialogueCount == 1 || dialogueCount == 2 || dialogueCount == 3) {
         image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
         characterName = "Antony";
@@ -112,7 +111,6 @@ public class Dialogue {
   }
 
   void counter(ArrayList <String> a, int character, int switchLevel) {
-    println(dialogueCount);
     try {
       typewriteText(a.get(dialogueCount), character);
     } 
@@ -126,7 +124,6 @@ public class Dialogue {
         dialogue = true;
         level = 3;
         dialogueCount = 0;
-        println("size count over works");
       } else {
 
         dialogue = false;

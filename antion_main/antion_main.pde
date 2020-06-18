@@ -7,9 +7,8 @@ int badTimer;
 boolean game = false;
 boolean dialogue = true;
 
-boolean narration1 = false;
-boolean narration2 = false;
-boolean narration3 = false;
+boolean narration = false;
+int narLevel = 0;
 
 int dialogueCount = 0;
 
@@ -28,7 +27,7 @@ Antilla antilla;
 
 AudioPlayer platformerSong;
 AudioPlayer minigame1Song;
-AudioPlayer minigame2Song;
+AudioPlayer minigame2Song;    
 AudioPlayer minigame3Song;
 
 int narration1Timer =  1400;
@@ -172,7 +171,7 @@ void gameState(int lv) {
     switch(lv) {
 
     case 0:
-      if (fadeOut == true) fadeOut(1, "dumb");
+      if (fadeOut == true) fadeOut(0, "narrative");
       drawStartScreen();
       break;
 
@@ -207,12 +206,8 @@ void gameState(int lv) {
     }
   }
 
-  if (fadeIn == true) fadeIn();
-  fill( 0, transparency );
-  rect( 0, 0, width, height );
-
-  if (narration1 == true) {
-    switch(lv) {
+  if (narration == true) {
+    switch(narLevel) {
 
     case 0:
       drawScene1();
@@ -227,18 +222,13 @@ void gameState(int lv) {
       println(narration1Timer);
 
       if (narration1Timer<=0) { 
-        narration2=true;
+        narLevel = 1;
 
         stopNarrationScene1();
       }
-
       break;
-    }
-  }
 
 
-  if (narration2 == true) {
-    switch(lv) {
     case 1:
       drawScene2();
 
@@ -252,17 +242,14 @@ void gameState(int lv) {
 
       if (narration2Timer<=0) {
 
-        narration3=true;
+        narLevel = 2;
 
         stopNarrationScene2();
       }
 
       break;
-    }
-  }
 
-  if (narration3 == true) {
-    switch(lv) {
+
     case 2:
       drawScene3();
 
@@ -275,13 +262,20 @@ void gameState(int lv) {
       println(narration3Timer);
 
       if (narration3Timer<=0) {
-
         stopNarrationScene3();
+        fadeOut = true;
       }
+      
+      if (fadeOut == true) fadeOut(1, "dialogue");
 
       break;
     }
   }
+
+  // fading in the rectangles.
+  if (fadeIn == true) fadeIn();
+  fill( 0, transparency );
+  rect( 0, 0, width, height );
 }
 
 
@@ -341,15 +335,24 @@ void keyReleased() {
 
 void fadeOut(int lv, String type) {
   //if( type == "game")
-  //if( type == "narrative");
-  //if( type == "dialogue");
+   if( type == "dialogue");
+
   if ( transparency < 255 ) {
     transparency = transparency + 2;
-    println(transparency, "this is transparency");
   } else if ( transparency >= 255 ) {
-    level = lv;
     fadeIn = true;
     fadeOut = false;
+    level = lv;
+
+    if ( type == "narrative") {
+      narration = true;
+    }
+    
+    if( type == "dialogue"){
+       level = lv;
+       narration = false;
+       println("this true");
+    }
   }
 }
 

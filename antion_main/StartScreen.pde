@@ -1,14 +1,14 @@
 boolean buttonPressed;
 int buttonX, buttonY, buttonW, buttonH;
 PImage startScreen;
- 
+
 void setupStartScreen() {
-  
+
   buttonPressed = false;
-  
+
   // loading the image into the sketch
   startScreen = loadImage("startscreen.png");
- 
+
   // Some basic parameters for a button
   buttonW = 200;
   buttonH = 50;
@@ -16,7 +16,7 @@ void setupStartScreen() {
   buttonX = (width-buttonW)/2;
   buttonY = (height-buttonH)/2;
 }
- 
+
 void drawStartScreen() {
   background(startScreen);
   if (buttonPressed) {
@@ -30,13 +30,12 @@ void drawStartScreen() {
     text("Click to Start", buttonX+15, buttonY+buttonW+30);
   }
 }
- 
+
 void mousePressed() {
   if (mouseX > buttonX && 
-      mouseX < buttonX+buttonW && 
-      mouseY > buttonY && 
-      mouseY < buttonY+buttonH+buttonW+30){
-        println("this clicked!");
-        fadeOut = true;
-      }
+    mouseX < buttonX+buttonW && 
+    mouseY > buttonY && 
+    mouseY < buttonY+buttonH+buttonW+30) {
+    fadeOut = true;
+  }
 }
