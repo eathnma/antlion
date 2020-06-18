@@ -212,15 +212,7 @@ void keyReleased() {
 
   if (keyCode == UP || key == 'w' || key == 'W') up3 = false;
   if (keyCode == DOWN || key == 's' || key == 'S') down3 = false;
-
-  //if (keyCode == ' ') 
-  //{
-  //  // if space is not pressed and making shooting true
-  //  // shooting is defined false in play.fire with each individual shot
-  //  space = false;
-  //  //play.shooting = true;
-  //}
-
+  
   if (key == 'a' || key == 'A' || keyCode == LEFT) {
     left = false;
     left3 = false;
@@ -235,5 +227,9 @@ void keyReleased() {
     jump = false;
     space3 = false;
     play.shooting = true;
+    
+     dialogueCount = dialogueCount + 1;
+      // to reset the char
+      myDialogue.counter = 0;
   }
 }
