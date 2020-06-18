@@ -2,6 +2,7 @@
 
 // SCENES
 PImage scene1, scene2, scene3;
+PImage kissQueen1, kissQueen2;
 
 // SOUND //
 // Narrator
@@ -39,6 +40,8 @@ void setupImages(){
   scene1 = loadImage("Scene1.png");
   scene2 = loadImage("Scene2.png");
   scene3 = loadImage("Scene3.png");
+  kissQueen1 = loadImage("Kiss_1.png");
+  kissQueen2 = loadImage("Kiss_2.png");
   
 }
 

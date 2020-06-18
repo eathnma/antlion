@@ -69,10 +69,7 @@ void drawMiniGame2() {
     println("YOU WIN!!!");
     // SWITCH SCREEN HERE
     imageMode(CORNER);
-    game=false;
-    dialogue=true;
-    dialogueCount=0;
-    level=4;
+    fadeOut=true;
   }
 
   if (second() - goodTimer > good_interval) {
