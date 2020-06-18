@@ -37,21 +37,6 @@ void drawMiniGame2() {
     acidX += 14.5;
     click = false;
   } 
-  if (acidX < 215) { 
-    println("YOU LOST!!!");
-    //setupMiniGame2();
-    //drawMiniGame2();
-  }
-  
-    if (acidX > 1200) { 
-    println("YOU WIN!!!");
-      // SWITCH SCREEN HERE
-      imageMode(CORNER);
-      game=false;
-      dialogue=true;
-      dialogueCount=0;
-      level=4;
-  }
   
   if (second() - goodTimer > good_interval) {
     goodfoods.add(new GoodFood(random(300,1100), random(400, 700), 75, 75));
@@ -71,6 +56,20 @@ void drawMiniGame2() {
   for (int i = 0; i < badfoods.size(); i++) {
     BadFood b = badfoods.get(i);
     b.draw();
+  }
+  
+  // WIN LOSE STATE
+   if (acidX < 215) { 
+    println("YOU LOST!!!", acidX);
+    losingStateBoolean = true;
+  }
+ 
+    if (acidX > 1200) { 
+    println("YOU WIN!!!");
+      // SWITCH SCREEN HERE
+      imageMode(CORNER);
+      fadeOut = true;
+      dialogue = true;
   }
 } 
 

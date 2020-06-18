@@ -10,7 +10,7 @@ int nFreqBand = 10;
 
 int note;
 int currentTimer;
-int score = 0;
+int score = 520;
 
 //screen height
 int h = 800;
@@ -119,14 +119,11 @@ void drawMiniGame1()
   g.draw();
 
   //lose/win conditions go here
-  if (score >= 500) {
+  if (currentTimer == 31 && score >= 500) {
     println("YOU ARE WORTHY...");
-      // SWITCH SCREEN HERE
-      imageMode(CORNER);
-      game=false;
-      dialogue=true;
-      dialogueCount=0;
-      level=3;
+    // SWITCH SCREEN HERE
+    imageMode(CORNER);
+    fadeOut = true;
   } else {
     println("YOU ARE NOT WORTHY!");
   if(currentTimer==18 && score <500){
