@@ -8,33 +8,41 @@ ArrayList<String> minigameThree = new ArrayList<String>();
 public class Dialogue {
 
   PFont f;
+  
+  // load image
+  PImage textBoxArt, antonyCropped;
+  
   private String text;
   private int position;
   private int counter = 0;
 
   // x and y coordinates for textbox
-  private int xPosTextBox = 30;
-  private int yPosTextBox = height - 200;
+  private int xPosTextBox = 40;
+  private int yPosTextBox = height - 250;
   private int widthTextBox = width - 60;
   private int heightTextBox = 170;
   private int radiusTextBox = 10;
 
   // x and y coordinates for text
-  private int xPosText = 100;
-  private int yPosText = height - 140;
+  private int xPosText = 120;
+  private int yPosText = height - 190;
 
   // character attributes
-  private int charSize = 150;
+  private int charSizeX = 1200;
+  private int charSizeY = 518;
 
   // character one
-  private int xPosChar0 = 125;
-  private int yPosChar0 = height - 350;
+  private int xPosChar0 = -325;
+  private int yPosChar0 = height - 600;
   // character two
   private int xPosChar1 = width - 250;
   private int yPosChar1 = height - 350;
 
   Dialogue(String text) {
     this.text = text;
+    textBoxArt = loadImage("textbox.png");
+    antonyCropped = loadImage("AntonyCropped.png");
+    f = createFont("suez.ttf", 30);
   }
 
   void character(int character, int position) {
@@ -50,40 +58,49 @@ public class Dialogue {
     } // antagonist 3, paste image
 
     // position 0 = left
-    if (position == 0) {
+    //if (position == 0) {
       //println("position 0");
-      fill(200);
-      rect( xPosChar0, yPosChar0, charSize, charSize );
-    }
+      image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
+    //}
 
-    // position 1 = right
-    if (position == 1) {
-      // position determines where the rectangle sits
-      //println("position 1");
-      fill(200);
-      rect( xPosChar1, yPosChar1, charSize, charSize );
-    }
-
-    // text box drawing
-    fill(100);
-    rect( xPosTextBox, yPosTextBox, widthTextBox, heightTextBox, radiusTextBox );
+    //// position 1 = right
+    //if (position == 1) {
+    //  // position determines where the rectangle sits
+    //  //println("position 1");
+    //  fill(200);
+    //  rect( xPosChar1, yPosChar1, charSize, charSize );
+    //}
+    
   }
 
   void typewriteText(String text) {
     String textBox = text.substring(0, counter);
 
     if (counter < text.length()) {
-      if (frameCount %4 == 0)
+      if (frameCount %   2 == 0)
         counter++;
     } else if (counter == text.length()) {
       textBox = textBox + " _";
       char flashingUnderscore = textBox.charAt(textBox.length() - 1);
       // can't figure out how to flash a single string item. Will figure out that soon.
     }
+    
+    character(1,1);
 
     // print out the character one by one
-    fill(255);
+    image(textBoxArt, 50, 500, 1083, 233);
+    fill(#472600);
+    textAlign(LEFT);
     text(textBox, xPosText, yPosText, width, height);
+    
+    pushMatrix();
+    fill(#FFFFFF);
+    textFont(f);
+    textAlign(CENTER);
+    text("Antony", -290, 512, width, height);
+    popMatrix();
+    
+    
   }
 
   void counter(ArrayList a) {

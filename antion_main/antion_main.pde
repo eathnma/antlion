@@ -1,5 +1,5 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 0;
+int level = 3;
 int startTimer;
 int goodTimer;
 int badTimer;
@@ -8,8 +8,9 @@ boolean game = false;
 boolean dialogue = true;
 int dialogueCount = 1;
 
+// fading in and out animation
 boolean fade;
-int fadeTimer;
+int fadeTimer = 30;
 int transparency;
 
 import ddf.minim.*;
@@ -38,6 +39,11 @@ void setup() {
 
   // setup for dialogue
   myDialogue.allDialogue();
+  
+  // load scene images
+  scene1 = loadImage("Scene1.png");
+  scene2 = loadImage("Scene2.png");
+  scene3 = loadImage("Scene3.png");
 
   // setup's for minigames
   setupStartScreen();
@@ -153,18 +159,21 @@ void gameState(int lv) {
     switch(lv) {
 
     case 0:
-
+      fade(1);
       break;
 
     case 1:
+      background(bg_MiniGame0);
       myDialogue.counter(dialogueOne);
       break;
 
     case 2:
+      background(bg_MiniGame1);
       myDialogue.counter(dialogueOneEnd);
       break;
 
     case 3:
+      background(bg_MiniGame3);
       myDialogue.counter(minigameOne);
       break;
 
@@ -237,14 +246,17 @@ void keyReleased() {
 }
 
 void fade(int level) {
+  // timer goes quick
   fadeTimer--;
-  if ( transparency < 255 ) {
-    transparency = transparency + 4;
-  } else if ( transparency > 255 ) {
-
-    //dialogue = true;
-    //game = false;// DEATH COMMENTARY
-  }// sets the transparency twice as fast
+  
+  // draws the rectangle
   fill( 255, transparency );
   rect( 0, 0, width, height );
+  
+  // transparency 
+  if ( transparency < 255 ) {
+    transparency = transparency + 1;
+  } else if ( transparency > 255 ) {
+    println("game state change!");
+  }
 }

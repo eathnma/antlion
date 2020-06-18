@@ -46,6 +46,7 @@ class Player extends Chara {
   // whether shooting is true or not
   boolean shooting;
   boolean reload;
+  
 
   Player(int diam, PVector pos, PVector vel) {
     super(diam, pos, vel);

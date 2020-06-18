@@ -11,7 +11,7 @@ PImage [] AntonyMovingRight = new PImage[9];
 PImage [] AntonyMovingLeft = new PImage[9];
 
 // Background Image
-PImage game1Background;
+PImage bg_MiniGame0;
 
 //
 PImage platformImg;
@@ -20,7 +20,7 @@ void setupMiniGame0() {
   
   // Instantiate Antony
   a = new Antony(1000, 700, 50, 50);
-  game1Background = loadImage("game1.png");
+  bg_MiniGame0 = loadImage("game1.png");
 
   // Instantiate Bottom Of Platform
   bottomOfPlatform = new BottomOfPlatform[4];
@@ -58,7 +58,7 @@ void drawMiniGame0() {
 
   //imageMode(CENTER);
   imageMode(CORNER);
-  image(game1Background, 0, 0);
+  image(bg_MiniGame0, 0, 0);
 
   // Draw Antony
   a.drawAntony();
