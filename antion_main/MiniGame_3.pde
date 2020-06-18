@@ -16,15 +16,15 @@ void setupMiniGame3() {
   tdAntilla = loadImage("AntillaTheHunTopDown.png");
 
   play = new Player(40, new PVector(179, 541), new PVector(0, 0));
-  antilla = new Antilla( 100, new PVector(width/2, 100), new PVector(-3, 0));
+  antilla = new Antilla( 100, new PVector(width/2 + 400, 100), new PVector(-3, 0));
 }
 
 void drawMiniGame3() {
   imageMode(CORNER);
-  image(bg_MiniGame3, 0,0);
+  image(bg_MiniGame3, 0, 0);
   play.update();
   antilla.update();
-  
+
   if (play.health <= 0) {
     fill(0);
     rect(0, 0, 1200, 800);
@@ -36,7 +36,7 @@ void drawMiniGame3() {
       antilla.health = 100;
     }
   }
-  
+
   // movement options
   if (up3) play.accelerate(upForce);
   if (down3) play.accelerate(downForce);
@@ -58,7 +58,7 @@ class Player extends Chara {
   // whether shooting is true or not
   boolean shooting;
   boolean reload;
-  
+
 
   Player(int diam, PVector pos, PVector vel) {
     super(diam, pos, vel);
@@ -153,22 +153,22 @@ class Player extends Chara {
     //the square in the middle
     // body
     //rect( 0, 0, diam, diam, 160 );
-    tdAntony.resize(diam,diam);
-    tdAntonyHurt1.resize(diam,diam);
-    tdAntonyHurt2.resize(diam,diam);
-    tdAntonyDead.resize(diam,diam);
+    tdAntony.resize(diam, diam);
+    tdAntonyHurt1.resize(diam, diam);
+    tdAntonyHurt2.resize(diam, diam);
+    tdAntonyDead.resize(diam, diam);
     // antony slowly dying :(
     if ( this.health <= 36 && this.health > 24) {
-      image(tdAntony, 0,0);
+      image(tdAntony, 0, 0);
       //fill( #E67E22 );
     } else if ( this.health <= 24 && this.health > 12) {
-      image(tdAntonyHurt1, 0,0);
+      image(tdAntonyHurt1, 0, 0);
       //fill( #E77714 );
     } else if ( this.health <= 12 && this.health > 0) {
-      image(tdAntonyHurt2, 0,0);
+      image(tdAntonyHurt2, 0, 0);
       //fill( #D86C0D );
     } else if ( this.health <= 0) {
-      image(tdAntonyDead, 0,0);
+      image(tdAntonyDead, 0, 0);
       //fill( #80420C );
     }
 
@@ -290,7 +290,7 @@ class Antilla extends Chara {
   Antilla( int diam, PVector pos, PVector vel) {
     super(diam, pos, vel);
     diam = 5;
-    health = 100;
+    health = 5;
   }
 
   void update() {
@@ -305,8 +305,8 @@ class Antilla extends Chara {
     //fill(255);
     translate( pos.x, pos.y );
     //ellipse( 0, 0, diam, diam );
-    tdAntilla.resize(diam,diam);
-    image(tdAntilla, -diam/2,-diam/2);
+    tdAntilla.resize(diam, diam);
+    image(tdAntilla, -diam/2, -diam/2);
     popMatrix();
   }
 
@@ -367,7 +367,8 @@ class Antilla extends Chara {
     }
 
     if (health <= 0) {
-      drawEndScreen();
-    } // send to end game credits. 
+      level = 6;
+
+    } // send to end game credits.
   }
 }

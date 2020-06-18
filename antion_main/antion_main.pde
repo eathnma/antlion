@@ -7,6 +7,8 @@ int badTimer;
 boolean game = false;
 boolean dialogue = true;
 
+boolean endScreen = false;
+
 Boolean losingStateBoolean = false;
 boolean narration = false;
 int narLevel = 0;
@@ -124,6 +126,8 @@ void gameState(int lv) {
       minigame1Song.pause();
       minigame2Song.pause();
       minigame3Song.pause();
+      NarrationMusic.pause();
+      AntonyIntroVoice.pause();
       break;
 
     case 1:
@@ -159,6 +163,7 @@ void gameState(int lv) {
       minigame1Song.pause();
       minigame3Song.pause();
       AntonyMinigame1Start.pause();
+      AntillaEatsVoice.pause();
 
       break;
 
@@ -167,13 +172,25 @@ void gameState(int lv) {
 
       // Play Minigame 3 Song
       minigame3Song.play();
-      //minigame3Song.loop();
       minigame3Song.setGain(-20);
 
       // Stop Other Songs
       platformerSong.pause();
       minigame1Song.pause();
       minigame2Song.pause();
+      AntonyFinal.pause();
+
+      break;
+
+    case 4:
+      drawEndScreen();
+      break;
+
+    case 5:
+      drawKissQueen();
+      break;
+
+    case 6:
       break;
     }
   }  
@@ -297,10 +314,27 @@ void gameState(int lv) {
     }
   }
 
+
+  //if (endScreen==true) {
+  //  switch(lv) {
+
+  //  case 0:
+  //    drawEndScreen();
+  //    minigame3Song.pause();
+  //    break;
+
+  //  case 1:
+  //    drawKissQueen();
+  //    break;
+  //  }
+  //}
+
   // fading in the rectangles.
-  if (fadeIn == true) fadeIn();
-  fill( 0, transparency );
-  rect( 0, 0, width, height );
+  if (fadeIn == true) { 
+    fadeIn();
+    fill( 0, transparency );
+    rect( 0, 0, width, height );
+  }
 }
 
 
@@ -329,7 +363,7 @@ void keyPressed() {
     space3 = true;
     jump = true;
   }
-  
+
   if (key == 'r' || key == 'R') r = true;
 }
 
@@ -348,7 +382,7 @@ void keyReleased() {
     right = false;
     right3 = false;
   }
-  
+
   if (key == 'r' || key == 'R') r = false;
 
   if (key == ' ') {
