@@ -1,5 +1,5 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 1;
+int level = 0;
 int startTimer;
 int goodTimer;
 int badTimer;
@@ -14,7 +14,7 @@ boolean narration3 = false;
 int dialogueCount = 0;
 
 // fading in and out animation
-boolean fade;
+boolean fadeIn, fadeOut;
 int fadeTimer = 30;
 int transparency;
 
@@ -172,7 +172,7 @@ void gameState(int lv) {
     switch(lv) {
 
     case 0:
-      if(fade == true) fade(1);
+      if (fadeOut == true) fadeOut(1, "dumb");
       drawStartScreen();
       break;
 
@@ -206,6 +206,10 @@ void gameState(int lv) {
       break;
     }
   }
+
+  if (fadeIn == true) fadeIn();
+  fill( 0, transparency );
+  rect( 0, 0, width, height );
 
   if (narration1 == true) {
     switch(lv) {
@@ -271,7 +275,7 @@ void gameState(int lv) {
       println(narration3Timer);
 
       if (narration3Timer<=0) {
-  
+
         stopNarrationScene3();
       }
 
@@ -335,15 +339,26 @@ void keyReleased() {
   }
 }
 
-void fade(int lv) {
+void fadeOut(int lv, String type) {
+  //if( type == "game")
+  //if( type == "narrative");
+  //if( type == "dialogue");
   if ( transparency < 255 ) {
-    transparency = transparency + 1;
+    transparency = transparency + 2;
+    println(transparency, "this is transparency");
   } else if ( transparency >= 255 ) {
     level = lv;
+    fadeIn = true;
+    fadeOut = false;
   }
-  
-  println(transparency);
-  
-  fill( 0, transparency );
-  rect( 0, 0, width, height );
+}
+
+void fadeIn() {
+
+  if (transparency <= 0) {
+    transparency = 0;
+    fadeIn = false;
+  } else {
+    transparency = transparency - 2;
+  }
 }

@@ -36,6 +36,7 @@ void mousePressed() {
       mouseX < buttonX+buttonW && 
       mouseY > buttonY && 
       mouseY < buttonY+buttonH+buttonW+30){
-        fade = true;
+        println("this clicked!");
+        fadeOut = true;
       }
 }
