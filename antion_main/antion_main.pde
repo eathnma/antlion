@@ -1,5 +1,5 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 4;
+int level = 0;
 int startTimer;
 int goodTimer;
 int badTimer;
@@ -7,14 +7,13 @@ int badTimer;
 boolean game = false;
 boolean dialogue = true;
 
-boolean narration1 = false;
-boolean narration2 = false;
-boolean narration3 = false;
+boolean narration = false;
+int narLevel = 0;
 
 int dialogueCount = 0;
 
 // fading in and out animation
-boolean fade;
+boolean fadeIn, fadeOut;
 int fadeTimer = 30;
 int transparency;
 
@@ -28,7 +27,7 @@ Antilla antilla;
 
 AudioPlayer platformerSong;
 AudioPlayer minigame1Song;
-AudioPlayer minigame2Song;
+AudioPlayer minigame2Song;    
 AudioPlayer minigame3Song;
 
 int narration1Timer =  1400;
@@ -174,7 +173,7 @@ void gameState(int lv) {
     switch(lv) {
 
     case 0:
-      if (fade == true) fade(1);
+      if (fadeOut == true) fadeOut(0, "narrative");
       drawStartScreen();
       break;
 
@@ -217,8 +216,8 @@ void gameState(int lv) {
     }
   }
 
-  if (narration1 == true) {
-    switch(lv) {
+  if (narration == true) {
+    switch(narLevel) {
 
     case 0:
       drawScene1();
@@ -233,18 +232,13 @@ void gameState(int lv) {
       println(narration1Timer);
 
       if (narration1Timer<=0) { 
-        narration2=true;
+        narLevel = 1;
 
         stopNarrationScene1();
       }
-
       break;
-    }
-  }
 
 
-  if (narration2 == true) {
-    switch(lv) {
     case 1:
       drawScene2();
 
@@ -258,17 +252,14 @@ void gameState(int lv) {
 
       if (narration2Timer<=0) {
 
-        narration3=true;
+        narLevel = 2;
 
         stopNarrationScene2();
       }
 
       break;
-    }
-  }
 
-  if (narration3 == true) {
-    switch(lv) {
+
     case 2:
       drawScene3();
 
@@ -281,13 +272,20 @@ void gameState(int lv) {
       println(narration3Timer);
 
       if (narration3Timer<=0) {
-
         stopNarrationScene3();
+        fadeOut = true;
       }
+      
+      if (fadeOut == true) fadeOut(1, "dialogue");
 
       break;
     }
   }
+
+  // fading in the rectangles.
+  if (fadeIn == true) fadeIn();
+  fill( 0, transparency );
+  rect( 0, 0, width, height );
 }
 
 
@@ -345,15 +343,35 @@ void keyReleased() {
   }
 }
 
-void fade(int lv) {
+void fadeOut(int lv, String type) {
+  //if( type == "game")
+   if( type == "dialogue");
+
   if ( transparency < 255 ) {
-    transparency = transparency + 1;
+    transparency = transparency + 2;
   } else if ( transparency >= 255 ) {
+    fadeIn = true;
+    fadeOut = false;
     level = lv;
+
+    if ( type == "narrative") {
+      narration = true;
+    }
+    
+    if( type == "dialogue"){
+       level = lv;
+       narration = false;
+       println("this true");
+    }
   }
+}
 
-  println(transparency);
+void fadeIn() {
 
-  fill( 0, transparency );
-  rect( 0, 0, width, height );
+  if (transparency <= 0) {
+    transparency = 0;
+    fadeIn = false;
+  } else {
+    transparency = transparency - 2;
+  }
 }
