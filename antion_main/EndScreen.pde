@@ -6,7 +6,7 @@ void drawEndScreen() {
   text("YOU WIN! PRESS R TO KISS THE QUEEN", 600, 400);
   minigame3Song.pause();
   if (r) {
-    level = 7;
+    level = 5;
   }
 }
 
@@ -14,6 +14,9 @@ void drawKissQueen() {
 
   //if (r) {
   imageMode(CORNER);
+  textSize(50);
+  fill(255);
+  text("NICE! YOU ARE A FANTASTIC KISSER!", 600, 400);
   image(kissQueen2, 0, 0);
   //}
 }

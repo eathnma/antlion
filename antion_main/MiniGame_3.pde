@@ -290,7 +290,7 @@ class Antilla extends Chara {
   Antilla( int diam, PVector pos, PVector vel) {
     super(diam, pos, vel);
     diam = 5;
-    health = 5;
+    health = 50;
   }
 
   void update() {
@@ -367,7 +367,7 @@ class Antilla extends Chara {
     }
 
     if (health <= 0) {
-      level = 6;
+      level = 4;
 
     } // send to end game credits.
   }

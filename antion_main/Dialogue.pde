@@ -102,6 +102,8 @@ public class Dialogue {
 
         AntonyFinal.pause();
         AntifaHelp.pause();
+        AntonyReachesTopVoice.pause();
+
       } else if (dialogueCount == 1 || dialogueCount >= 6 ) {
         //antony
         image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );

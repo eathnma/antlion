@@ -10,7 +10,7 @@ int nFreqBand = 10;
 
 int note;
 int currentTimer;
-int score = 520;
+int score = 0;
 
 //screen height
 int h = 800;
@@ -32,6 +32,7 @@ void setupMiniGame1() {
   antony_0 = loadImage("Antony__0.png");
 
   startTimer = millis();
+  score=0;
   fUck = false;
 
   //minim object initialization

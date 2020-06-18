@@ -144,7 +144,7 @@ void gameState(int lv) {
       platformerSong.pause();
       minigame2Song.pause();
       minigame3Song.pause();
-      AntonyIntroVoice.pause();
+      AntonyMinigame1Start.pause();
       break;
 
     case 2:
@@ -162,9 +162,10 @@ void gameState(int lv) {
       platformerSong.pause();
       minigame1Song.pause();
       minigame3Song.pause();
-      AntonyMinigame1Start.pause();
+      AntonyMinigame2Start.pause();
+      AntonyMinigame2Instructions.pause();
       AntillaEatsVoice.pause();
-
+      AntonyIntroVoice.pause();
       break;
 
     case 3:
@@ -226,6 +227,7 @@ void gameState(int lv) {
 
       AntonyMinigame1Start.play();
       AntonyMinigame1Start.setGain(-15);
+      AntillaEatsVoice.pause();
       break;
 
     case 4:
@@ -234,11 +236,18 @@ void gameState(int lv) {
 
       AntonyMinigame2Instructions.play();
       AntonyMinigame2Instructions.setGain(-15);
+
+      AntonyMinigame1Start.pause();
+      AntonyIntroVoice.pause();
       break;
 
     case 5:
       background(bg_MiniGame3);
       myDialogue.counter(minigameThree, 3, 3); // multiple people speaking
+
+      AntonyMinigame2Instructions.pause();
+      AntonyMinigame1Start.pause();
+      AntonyIntroVoice.pause();
       break;
 
     case 6:
@@ -314,27 +323,10 @@ void gameState(int lv) {
     }
   }
 
-
-  //if (endScreen==true) {
-  //  switch(lv) {
-
-  //  case 0:
-  //    drawEndScreen();
-  //    minigame3Song.pause();
-  //    break;
-
-  //  case 1:
-  //    drawKissQueen();
-  //    break;
-  //  }
-  //}
-
   // fading in the rectangles.
-  if (fadeIn == true) { 
-    fadeIn();
-    fill( 0, transparency );
-    rect( 0, 0, width, height );
-  }
+  if (fadeIn == true) fadeIn();
+  fill( 0, transparency );
+  rect( 0, 0, width, height );
 }
 
 
