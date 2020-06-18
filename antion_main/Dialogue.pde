@@ -210,7 +210,7 @@ public class Dialogue {
     a.add("I'm gonna tell you the instructions really quick so listen up!");
     a.add("Shoot the boss with my raid cans using SPACE");
     a.add("You can hold space for a more powerful shot, but its up to you!");
-    a.add("WASD to move. Don't' get hit by the antlions.");
+    a.add("WASD to move. Don't get hit by the antlions.");
   }
 
   void endScreen(ArrayList a) {

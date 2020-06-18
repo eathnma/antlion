@@ -1,13 +1,13 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 2;
+int level = 1;
 int startTimer;
 int goodTimer;
 int badTimer;
 
 boolean game = false;
-boolean dialogue = false;
+boolean dialogue = true;
 
-boolean narration1 = true;
+boolean narration1 = false;
 boolean narration2 = false;
 boolean narration3 = false;
 

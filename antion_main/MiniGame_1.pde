@@ -50,7 +50,7 @@ void drawMiniGame1()
   currentTimer = second() - startTimer;
   fill(255,255,255);
   textSize(30);
-  text("Score: " + score, 20, 50);
+  text("Score: " + score, 70, 50);
 
   //analyzes audio from input mix
   fft.forward(in.mix);
