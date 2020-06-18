@@ -121,8 +121,21 @@ void drawMiniGame1()
   //lose/win conditions go here
   if (score >= 500) {
     println("YOU ARE WORTHY...");
+      // SWITCH SCREEN HERE
+      imageMode(CORNER);
+      game=false;
+      dialogue=true;
+      dialogueCount=0;
+      level=3;
   } else {
     println("YOU ARE NOT WORTHY!");
+  if(currentTimer==18 && score <500){
+   setupMiniGame1();
+   drawMiniGame1();
+   startTimer = second();
+   score=0;
+  }
+    
   }
 }
 

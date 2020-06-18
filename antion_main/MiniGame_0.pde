@@ -315,6 +315,11 @@ class Antony {
     if (y < 0) { 
       println("ANTEATER EAT U");
       // SWITCH SCREEN HERE
+      imageMode(CORNER);
+      game=false;
+      dialogue=true;
+      dialogueCount=0;
+      level=2;
     }
   }
 }

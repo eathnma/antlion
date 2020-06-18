@@ -63,6 +63,10 @@ public class Dialogue {
     if (character == 0) {
       image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
       characterName = "Antony";
+      
+      //AntonyMinigame1Start.play();
+      //AntonyMinigame1Start.setGain(-10);
+      
     }
     if (character == 1) {
       image( antifaCropped, xPosChar0 - 230, yPosChar0, charSizeX, charSizeY );
@@ -75,9 +79,18 @@ public class Dialogue {
       if (dialogueCount == 0 || dialogueCount == 1 || dialogueCount == 2 || dialogueCount == 3) {
         image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
         characterName = "Antony";
+
+        AntonyReachesTopVoice.play();
+        AntonyReachesTopVoice.setGain(-10);
+        
       } else if ( dialogueCount == 4 || dialogueCount == 5) {
         image( antillaCropped, xPosChar0 + 400, yPosChar0, 600, 400 );
         characterName = "Antilla the Hun";
+
+        AntillaEatsVoice.play();
+        AntillaEatsVoice.setGain(-10);
+
+        AntonyReachesTopVoice.pause();
       }
     }
 
@@ -86,14 +99,34 @@ public class Dialogue {
         //antilla
         image( antillaCropped, xPosChar0 + 400, yPosChar0, 600, 400 );
         characterName = "Antilla the Hun";
+        
+        AnttilaFinal.play();
+        AnttilaFinal.setGain(-10);
+        
+        AntonyFinal.pause();
+        AntifaHelp.pause();
+        
       } else if (dialogueCount == 1 || dialogueCount >= 6 ) {
         //antony
         image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
         characterName = "Antony";
+        
+        AntonyFinal.play();
+        AntonyFinal.setGain(-10);
+        
+        AnttilaFinal.pause();
+        AntifaHelp.pause();
+        
       } else if (dialogueCount == 2) {
         //queen antifa
         image( antifaCropped, xPosChar0 - 230, yPosChar0, charSizeX, charSizeY );
         characterName = "Queen Antifa";
+        
+        AntifaHelp.play();
+        AntifaHelp.setGain(-10);
+        
+        AnttilaFinal.pause();
+        AntonyFinal.pause();
       }
     }
 
@@ -161,7 +194,7 @@ public class Dialogue {
     a.add("Way too easy."); //1
     a.add("“One does not simply jump into Myrdor,” Elder Boromant said."); //2
     a.add("Well, I’m about to-"); //3
-    a.add("The cripple fell for my trap. Fool."); //4
+    a.add("*EATS ANTONY* The cripple fell for my trap. Fool."); //4
     a.add("He will never survive my treacherous insides."); //5
   }
 
@@ -186,7 +219,7 @@ public class Dialogue {
     a.add("Wait, no. FANTASTIC!");
     a.add("FANTASTIC!");
     a.add("If I use my imaginary telekinetic powers to push the acid back...");
-    a.add("Maybe Anttila will get an upset stomach.... and he’ll puke me out instead!");
+    a.add("Maybe Anttila will get an upset stomach....");
     a.add("And puke me out instead!");
 
     a.add("Hey you, player!");
@@ -205,7 +238,7 @@ public class Dialogue {
     a.add("Well, Raid sponsors me so I can shoot their cans from MY mouth.");
     a.add("My Queen, get behind me and I’ll protect you.");
     a.add("Time to show this goon who can shoot the farthest.");
-    
+
     a.add("Hey you, player!");
     a.add("I'm gonna tell you the instructions really quick so listen up!");
     a.add("Shoot the boss with my raid cans using SPACE");
