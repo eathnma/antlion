@@ -1,6 +1,8 @@
 // SWITCH STATE OF GAMEPLAY
 int level = 3;
 int startTimer;
+int goodTimer;
+int badTimer;
 
 boolean game = false;
 boolean dialogue = true;
@@ -32,6 +34,7 @@ void setup() {
   setupStartScreen();
   setupMiniGame0();
   setupMiniGame1();
+  setupMiniGame2();
   setupMiniGame3();
 }
 
@@ -53,6 +56,8 @@ void draw() {
     }
 
     if (key == '2') {
+      goodTimer = second();
+      badTimer = second();
       level = 2;
       println("game two");
     }
@@ -96,6 +101,7 @@ void gameState(int lv) {
       break;
 
     case 1:
+      
       myDialogue.counter(dialogueOne);
       break;
 
