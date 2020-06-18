@@ -25,9 +25,15 @@ color yellow = color(253, 255, 56);
 Guide g = new Guide(10, guideY, guideSize, guideSize);
 ArrayList<Notes> notes = new ArrayList<Notes>();
 
+boolean fUck = false;
+
 void setupMiniGame1() {
   bg_MiniGame1 = loadImage("game2.png");
   antony_0 = loadImage("Antony__0.png");
+  
+  startTimer = second();
+  score = 0;
+  fUck = false;
 
   //minim object initialization
   minim = new Minim(this);
@@ -44,6 +50,10 @@ void setupMiniGame1() {
 //20= 818-861(G#5), 21= 861-904(A5), 22= 904-947(A#5), 23= 947-991(B5), 24= 991-1034(not music LOL), 25= 1034-1076(C6)
 void drawMiniGame1()
 {
+  if (fUck == false) {
+    startTimer = second();
+    fUck = true;
+  }
   background(0);
   imageMode(CORNER);
   image(bg_MiniGame1, 0,0);
@@ -117,9 +127,12 @@ void drawMiniGame1()
   //draw and update guide
   g.tick();
   g.draw();
+  
+  println(startTimer);
+  println(currentTimer);
 
   //lose/win conditions go here
-  if (score >= 500) {
+  if (currentTimer == 31 && score >= 500) {
     println("YOU ARE WORTHY...");
       // SWITCH SCREEN HERE
       imageMode(CORNER);
@@ -127,15 +140,10 @@ void drawMiniGame1()
       dialogue=true;
       dialogueCount=0;
       level=3;
-  } else {
-    println("YOU ARE NOT WORTHY!");
-  if(currentTimer==18 && score <500){
-   setupMiniGame1();
-   drawMiniGame1();
-   startTimer = second();
-   score=0;
   }
-    
+  
+  if(currentTimer == 31 && score < 500){
+   setupMiniGame1();
   }
 }
 

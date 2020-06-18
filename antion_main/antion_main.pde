@@ -30,9 +30,9 @@ AudioPlayer minigame1Song;
 AudioPlayer minigame2Song;    
 AudioPlayer minigame3Song;
 
-int narration1Timer =  1400;
-int narration2Timer = 1100;
-int narration3Timer = 800;
+int narration1Timer =  14;
+int narration2Timer = 11;
+int narration3Timer = 8;
 
 boolean narration1Finished;
 
@@ -275,7 +275,7 @@ void gameState(int lv) {
         stopNarrationScene3();
         fadeOut = true;
       }
-      
+
       if (fadeOut == true) fadeOut(1, "dialogue");
 
       break;
@@ -345,7 +345,7 @@ void keyReleased() {
 
 void fadeOut(int lv, String type) {
   //if( type == "game")
-   if( type == "dialogue");
+  if ( type == "dialogue");
 
   if ( transparency < 255 ) {
     transparency = transparency + 2;
@@ -357,11 +357,11 @@ void fadeOut(int lv, String type) {
     if ( type == "narrative") {
       narration = true;
     }
-    
-    if( type == "dialogue"){
-       level = lv;
-       narration = false;
-       println("this true");
+
+    if ( type == "dialogue") {
+      level = lv;
+      narration = false;
+      println("this true");
     }
   }
 }
