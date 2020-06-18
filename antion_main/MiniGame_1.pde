@@ -84,7 +84,7 @@ void drawMiniGame1()
   if (currentTimer >= 3000 && currentTimer < 4000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 9), 2, guideSize, red));
   } 
-  if (currentTimer >= 4000 && currentTimer <= 6000) {
+  if (currentTimer >= 4000 && currentTimer < 8000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 6), 2, guideSize, green));
   } 
   if (currentTimer >= 8000 && currentTimer < 9000) {
