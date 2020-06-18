@@ -186,7 +186,8 @@ public class Dialogue {
     a.add("Wait, no. FANTASTIC!");
     a.add("FANTASTIC!");
     a.add("If I use my imaginary telekinetic powers to push the acid back...");
-    a.add("Maybe Anttila will get an upset stomach and he’ll puke me out instead!");
+    a.add("Maybe Anttila will get an upset stomach.... and he’ll puke me out instead!");
+    a.add("And puke me out instead!");
 
     a.add("Hey you, player!");
     a.add("Click on the stomach acid as fast as you can so we can push it back!");
