@@ -133,7 +133,7 @@ void drawMiniGame1()
   println(fUck);
 
   //lose/win conditions go here
-  if (currentTimer == 31 && score >= 500) {
+  if (currentTimer >= 31 && score >= 500) {
     println("YOU ARE WORTHY...");
     // SWITCH SCREEN HERE
     imageMode(CORNER);
