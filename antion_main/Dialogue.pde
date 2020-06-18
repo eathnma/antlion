@@ -102,9 +102,8 @@ public class Dialogue {
     dialogueOne(dialogueOne);
     dialogueOneEnd(dialogueOneEnd);
     minigameOneDialogue(minigameOne);
-    minigameTwoDialogue(mingameTwo);
+    minigameTwoDialogue(minigameTwo);
     minigameThreeDialogue(minigameThree);
-    
   }
 
 
@@ -112,7 +111,7 @@ public class Dialogue {
 
   void dialogueOne(ArrayList a) {
     a.add("*Sigh*...");
-    a.add("Who knew saving the world would involve jumping on platforms to save a damsel in distress?");
+    a.add("Who knew saving the world would involve jumping on platforms?");
     a.add("I hope the player knows that the movement keys are A and S.");
     a.add("Oh, and SPACEBAR to jump!"); 
     a.add("Hey you, player!");
