@@ -24,6 +24,9 @@ void setup() {
   smooth();
 
   myDialogue = new Dialogue("test dialogue");
+  
+  // setup for dialogue
+  myDialogue.allDialogue();
 
   // setup's for minigames
   setupStartScreen();
@@ -105,11 +108,11 @@ void gameState(int lv) {
       break;
 
     case 4:
-      myDialogue.counter(mingameTwo);
+      myDialogue.counter(minigameTwo);
       break;
 
     case 5:
-      myDialogue.counter(mingameThree);
+      myDialogue.counter(minigameThree);
       break;
 
     case 6:
@@ -150,14 +153,6 @@ void gameState(int lv) {
 
     if (keyCode == UP || key == 'w' || key == 'W') up3 = false;
     if (keyCode == DOWN || key == 's' || key == 'S') down3 = false;
-
-    //if (keyCode == ' ') 
-    //{
-    //  // if space is not pressed and making shooting true
-    //  // shooting is defined false in play.fire with each individual shot
-    //  space = false;
-    //  //play.shooting = true;
-    //}
 
     if (key == 'a' || key == 'A' || keyCode == LEFT) {
       left = false;
