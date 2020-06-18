@@ -97,6 +97,8 @@ public class Dialogue {
       //
     }
   }
+  
+  
 
   void allDialogue() {
     dialogueOne(dialogueOne);

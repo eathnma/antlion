@@ -1,5 +1,5 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 3;
+int level = 0;
 int startTimer;
 int goodTimer;
 int badTimer;
@@ -7,6 +7,10 @@ int badTimer;
 boolean game = false;
 boolean dialogue = true;
 int dialogueCount = 1;
+
+boolean fade;
+int fadeTimer;
+int transparency;
 
 import ddf.minim.*;
 Minim minim;
@@ -31,7 +35,7 @@ void setup() {
   smooth();
 
   myDialogue = new Dialogue("test dialogue");
-  
+
   // setup for dialogue
   myDialogue.allDialogue();
 
@@ -149,12 +153,10 @@ void gameState(int lv) {
     switch(lv) {
 
     case 0:
-      // starting screen dialogue
-      drawStartScreen();
+
       break;
 
     case 1:
-      
       myDialogue.counter(dialogueOne);
       break;
 
@@ -213,14 +215,6 @@ void keyReleased() {
   if (keyCode == UP || key == 'w' || key == 'W') up3 = false;
   if (keyCode == DOWN || key == 's' || key == 'S') down3 = false;
 
-  //if (keyCode == ' ') 
-  //{
-  //  // if space is not pressed and making shooting true
-  //  // shooting is defined false in play.fire with each individual shot
-  //  space = false;
-  //  //play.shooting = true;
-  //}
-
   if (key == 'a' || key == 'A' || keyCode == LEFT) {
     left = false;
     left3 = false;
@@ -235,5 +229,22 @@ void keyReleased() {
     jump = false;
     space3 = false;
     play.shooting = true;
+
+    dialogueCount = dialogueCount + 1;
+    // to reset the char
+    myDialogue.counter = 0;
   }
+}
+
+void fade(int level) {
+  fadeTimer--;
+  if ( transparency < 255 ) {
+    transparency = transparency + 4;
+  } else if ( transparency > 255 ) {
+
+    //dialogue = true;
+    //game = false;// DEATH COMMENTARY
+  }// sets the transparency twice as fast
+  fill( 255, transparency );
+  rect( 0, 0, width, height );
 }
