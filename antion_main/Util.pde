@@ -49,3 +49,5 @@ public class StringIntegerPair{
   }
   
 }
+
+// LOADING ALL ASSETS

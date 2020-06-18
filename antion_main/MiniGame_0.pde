@@ -6,9 +6,21 @@ TopOfPlatform [] topOfPlatform;
 
 Floor f;
 
+// Antony Image
+PImage [] AntonyMovingRight = new PImage[9];
+PImage [] AntonyMovingLeft = new PImage[9];
+
+// Background Image
+PImage game1Background;
+
+//
+PImage platformImg;
+
 void setupMiniGame0() {
+  
   // Instantiate Antony
   a = new Antony(1000, 700, 50, 50);
+  game1Background = loadImage("game1.png");
 
   // Instantiate Bottom Of Platform
   bottomOfPlatform = new BottomOfPlatform[4];
@@ -26,6 +38,16 @@ void setupMiniGame0() {
 
   // Instantiate Floor
   f = new Floor(0, 780, 1200, 40);
+
+  for (int i = 0; i < AntonyMovingRight.length; i++) {
+    AntonyMovingRight[i] = loadImage("Antony"+i+".png");
+  }
+
+  for (int i = 0; i < AntonyMovingLeft.length; i++) {
+    AntonyMovingLeft[i] = loadImage("LAntony"+i+".png");
+  }
+
+  platformImg = loadImage("platform1.png");
 }
 
 // Draw Method
@@ -33,6 +55,10 @@ void drawMiniGame0() {
 
   // Background
   background(0);
+
+  //imageMode(CENTER);
+  imageMode(CORNER);
+  image(game1Background, 0, 0);
 
   // Draw Antony
   a.drawAntony();
@@ -49,17 +75,13 @@ void drawMiniGame0() {
 
   // Draw Floor
   f.drawFloor();
+  
+  //  // Draw Platform Images
+  //imageMode(CENTER);
+  //image(platformImg, 905, 550, 900, 600);
+
+
 }
-
-//void keyPressed() {
-//  a.keyPressed();
-//}
-
-//void keyReleased() {
-//  a.keyReleased();
-//}
-
-//>>>>>>> Stashed changes
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -77,21 +99,59 @@ class Antony {
 
   boolean connected = false;
 
+  PImage Antony;
+
+  boolean faceRightImg = false;
+  boolean faceLeftImg = false;
+  boolean initialImg = true;
+
+  boolean stopRight;
+  boolean stopLeft;
+
+  boolean faceLeft;
+  boolean faceRight;
+
   Antony(float xPos, float yPos, float wid, float hei) {
     x = xPos;
     y = yPos;
     w = wid;
     h = hei;
+    Antony = loadImage("Antony8.png");
   }
-
+  int counter;
   // Draw Antony
   void drawAntony() {
 
     // Antony
-    pushMatrix();
-    translate(x, y);
-    rect(0, 0, w, h);
-    popMatrix();
+
+    if (initialImg==true) {
+      imageMode(CENTER);
+      image(AntonyMovingRight[8], x, y, w + 130, h + 80);
+
+      stopRight=false;
+      stopLeft=false;
+
+      faceLeftImg=false;
+    }
+
+    if (faceRightImg==true) {
+      imageMode(CENTER);
+      image(AntonyMovingRight[8], x, y, w + 130, h + 80);
+
+      stopRight=false;
+      stopLeft=false;
+
+      faceLeftImg=false;
+    }
+
+    // Antony
+    if (faceLeftImg==true) {
+      imageMode(CENTER);
+      image(AntonyMovingLeft[8], x, y, w + 130, h + 80);
+
+      stopRight=false;
+      stopLeft=false;
+    }
 
     // Call Move Method
     update();
@@ -106,11 +166,44 @@ class Antony {
     y += speedY;
 
     if (left) {
-      speedX = -10;
+      speedX = -10;    
+
+      imageMode(CENTER);
+      image(AntonyMovingLeft[counter], x, y, w + 130, h + 80);
+      delay(10);
+
+      counter = ++counter % AntonyMovingRight.length;
+      faceRightImg=false;
+      faceLeftImg=false;
+
+      faceLeft=true;
+      faceRight=false;
+      initialImg=false;
+    }
+
+    if (faceLeft==true && speedX==0 && faceRight==false) {
+      faceLeftImg=true;
     }
 
     if (right) {
       speedX = 10;
+
+      imageMode(CENTER);
+      image(AntonyMovingRight[counter], x, y, w + 130, h + 80);
+      delay(10);
+
+      counter = ++counter % AntonyMovingRight.length;
+      faceRightImg=false;
+      faceLeftImg=false;  
+      initialImg=false;
+
+      faceLeft=false;
+      faceRight=true;
+    }
+
+    if (faceRight==true && speedX==0 && faceLeft == false) {
+      faceRightImg=true; 
+      faceLeftImg=false;
     }
 
     if (!left && !right) {
@@ -242,6 +335,7 @@ class BottomOfPlatform {
     pushMatrix();
     translate(x, y);
     rect(0, 0, w, h);
+    fill(139,69,19);
     popMatrix();
   }
 }
@@ -262,6 +356,7 @@ class Floor {
     pushMatrix();
     translate(x, y);
     rect(0, 0, w, h);
+    fill(139,69,19);
     popMatrix();
   }
 }
@@ -282,6 +377,7 @@ class TopOfPlatform {
     pushMatrix();
     translate(x, y);
     rect(0, 0, w, h);
+    fill(139,69,19);
     popMatrix();
   }
 }
