@@ -1,5 +1,5 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 1;
+int level = 4;
 int startTimer;
 int goodTimer;
 int badTimer;
@@ -137,6 +137,7 @@ void gameState(int lv) {
       platformerSong.pause();
       minigame2Song.pause();
       minigame3Song.pause();
+      AntonyIntroVoice.pause();
       break;
 
     case 2:
@@ -150,6 +151,7 @@ void gameState(int lv) {
       platformerSong.pause();
       minigame1Song.pause();
       minigame3Song.pause();
+      AntonyMinigame1Start.pause();
       break;
 
     case 3:
@@ -172,28 +174,36 @@ void gameState(int lv) {
     switch(lv) {
 
     case 0:
-      if(fade == true) fade(1);
+      if (fade == true) fade(1);
       drawStartScreen();
       break;
 
     case 1:
       background(bg_MiniGame0);
       myDialogue.counter(dialogueOne, 0, 0);
+      AntonyIntroVoice.play();
+      AntonyIntroVoice.setGain(-10);
       break;
 
     case 2:
       background(bg_MiniGame0);
-      myDialogue.counter(dialogueOneEnd, 2, 10); //multiple people speaking
+      myDialogue.counter(dialogueOneEnd, 2, 10); //multiple people speaking    
       break;
 
     case 3:
       background(bg_MiniGame1);
       myDialogue.counter(minigameOne, 0, 1);
+
+      AntonyMinigame1Start.play();
+      AntonyMinigame1Start.setGain(-15);
       break;
 
     case 4:
       background(bg_MiniGame2);
       myDialogue.counter(minigameTwo, 0, 2);
+
+      AntonyMinigame2Instructions.play();
+      AntonyMinigame2Instructions.setGain(-15);
       break;
 
     case 5:
@@ -271,7 +281,7 @@ void gameState(int lv) {
       println(narration3Timer);
 
       if (narration3Timer<=0) {
-  
+
         stopNarrationScene3();
       }
 
@@ -341,9 +351,9 @@ void fade(int lv) {
   } else if ( transparency >= 255 ) {
     level = lv;
   }
-  
+
   println(transparency);
-  
+
   fill( 0, transparency );
   rect( 0, 0, width, height );
 }

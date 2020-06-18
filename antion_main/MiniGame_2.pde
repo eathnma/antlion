@@ -39,10 +39,18 @@ void drawMiniGame2() {
   } 
   if (acidX < 215) { 
     println("YOU LOST!!!");
+    //setupMiniGame2();
+    //drawMiniGame2();
   }
   
     if (acidX > 1200) { 
     println("YOU WIN!!!");
+      // SWITCH SCREEN HERE
+      imageMode(CORNER);
+      game=false;
+      dialogue=true;
+      dialogueCount=0;
+      level=4;
   }
   
   if (second() - goodTimer > good_interval) {

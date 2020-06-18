@@ -355,6 +355,7 @@ class Antilla extends Chara {
     }
 
     if (health <= 0) {
-    } // send to end game credits.
+      drawEndScreen();
+    } // send to end game credits. 
   }
 }
