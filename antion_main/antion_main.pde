@@ -215,9 +215,13 @@ void gameState(int lv) {
     case 2:
       background(bg_MiniGame0);
       myDialogue.counter(dialogueOneEnd, 2, 10); //multiple people speaking 
-      if (dialogueCount >= dialogueOneEnd.size()) fadeOut = true;
+      if (dialogueCount >= dialogueOneEnd.size()) {
+        fadeOut = true;
+      }
 
-      if (fadeOut == true) fadeOut(3, "dialogue");
+      if (fadeOut == true) {
+        fadeOut(3, "dialogue");
+      }
       break;
 
     case 3:
@@ -314,27 +318,10 @@ void gameState(int lv) {
     }
   }
 
-
-  //if (endScreen==true) {
-  //  switch(lv) {
-
-  //  case 0:
-  //    drawEndScreen();
-  //    minigame3Song.pause();
-  //    break;
-
-  //  case 1:
-  //    drawKissQueen();
-  //    break;
-  //  }
-  //}
-
   // fading in the rectangles.
-  if (fadeIn == true) { 
-    fadeIn();
-    fill( 0, transparency );
-    rect( 0, 0, width, height );
-  }
+  if (fadeIn == true) fadeIn();
+  fill( 0, transparency );
+  rect( 0, 0, width, height );
 }
 
 
@@ -397,7 +384,7 @@ void keyReleased() {
 }
 
 void fadeOut(int lv, String type) {
-
+  println(transparency);
   if ( transparency < 255 ) {
     transparency = transparency + 2;
   }  
