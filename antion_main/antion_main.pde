@@ -7,6 +7,7 @@ int badTimer;
 boolean game = false;
 boolean dialogue = true;
 
+Boolean losingStateBoolean = false;
 boolean narration = false;
 int narLevel = 0;
 
@@ -30,9 +31,9 @@ AudioPlayer minigame1Song;
 AudioPlayer minigame2Song;    
 AudioPlayer minigame3Song;
 
-int narration1Timer =  14;
-int narration2Timer = 11;
-int narration3Timer = 8;
+int narration1Timer = 1400;
+int narration2Timer = 1100;
+int narration3Timer = 800;
 
 boolean narration1Finished;
 
@@ -127,6 +128,9 @@ void gameState(int lv) {
 
     case 1:
       drawMiniGame1();
+      if (fadeOut == true) {
+        fadeOut(4, "game");
+      }
 
       // Play Minigame 1 Song
       minigame1Song.play();
@@ -141,6 +145,10 @@ void gameState(int lv) {
 
     case 2:
       drawMiniGame2();
+      println(fadeOut, dialogue, game, level);
+      if (fadeOut == true) {
+        fadeOut(5, "game");
+      }
 
       // Play Minigame 1 Song
       minigame2Song.play();
@@ -151,6 +159,7 @@ void gameState(int lv) {
       minigame1Song.pause();
       minigame3Song.pause();
       AntonyMinigame1Start.pause();
+
       break;
 
     case 3:
@@ -173,6 +182,8 @@ void gameState(int lv) {
     switch(lv) {
 
     case 0:
+      if (mousePressed && mouseX > buttonX && mouseX < buttonX+buttonW && mouseY > buttonY && mouseY < buttonY+buttonH+buttonW+30) 
+        fadeOut = true;
       if (fadeOut == true) fadeOut(0, "narrative");
       drawStartScreen();
       break;
@@ -186,7 +197,10 @@ void gameState(int lv) {
 
     case 2:
       background(bg_MiniGame0);
-      myDialogue.counter(dialogueOneEnd, 2, 10); //multiple people speaking    
+      myDialogue.counter(dialogueOneEnd, 2, 10); //multiple people speaking 
+      if (dialogueCount >= dialogueOneEnd.size()) fadeOut = true;
+
+      if (fadeOut == true) fadeOut(3, "dialogue");
       break;
 
     case 3:
@@ -212,6 +226,7 @@ void gameState(int lv) {
 
     case 6:
       // lose state dialogue
+
       break;
     }
   }
@@ -348,24 +363,30 @@ void keyReleased() {
 }
 
 void fadeOut(int lv, String type) {
-  //if( type == "game")
-  if ( type == "dialogue");
 
   if ( transparency < 255 ) {
     transparency = transparency + 2;
-  } else if ( transparency >= 255 ) {
+  }  
+
+  if ( transparency >= 255 ) {
     fadeIn = true;
     fadeOut = false;
     level = lv;
+    dialogueCount = 0;
+
 
     if ( type == "narrative") {
       narration = true;
     }
 
     if ( type == "dialogue") {
-      level = lv;
       narration = false;
       println("this true");
+    }
+
+    if ( type == "game") {
+      game = false;
+      dialogue = true;
     }
   }
 }

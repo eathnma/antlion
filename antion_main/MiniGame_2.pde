@@ -94,6 +94,19 @@ void drawMiniGame2() {
     BadFood b = badfoods.get(i);
     b.draw();
   }
+  
+  // WIN LOSE STATE
+   if (acidX < 215) { 
+    println("YOU LOST!!!", acidX);
+    losingStateBoolean = true;
+  }
+ 
+    if (acidX > 1200) { 
+    println("YOU WIN!!!");
+      // SWITCH SCREEN HERE
+      imageMode(CORNER);
+      fadeOut = true;
+  }
 } 
 
 void mouseClicked() { 

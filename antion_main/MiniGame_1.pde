@@ -10,7 +10,7 @@ int nFreqBand = 10;
 
 int note;
 int currentTimer;
-int score = 0;
+int score = 520;
 
 //screen height
 int h = 800;

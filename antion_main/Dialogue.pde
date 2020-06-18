@@ -63,10 +63,9 @@ public class Dialogue {
     if (character == 0) {
       image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
       characterName = "Antony";
-      
+
       //AntonyMinigame1Start.play();
       //AntonyMinigame1Start.setGain(-10);
-      
     }
     if (character == 1) {
       image( antifaCropped, xPosChar0 - 230, yPosChar0, charSizeX, charSizeY );
@@ -81,7 +80,6 @@ public class Dialogue {
 
         AntonyReachesTopVoice.play();
         AntonyReachesTopVoice.setGain(-10);
-        
       } else if ( dialogueCount == 4 || dialogueCount == 5) {
         image( antillaCropped, xPosChar0 + 400, yPosChar0, 600, 400 );
         characterName = "Antilla the Hun";
@@ -98,32 +96,30 @@ public class Dialogue {
         //antilla
         image( antillaCropped, xPosChar0 + 400, yPosChar0, 600, 400 );
         characterName = "Antilla the Hun";
-        
+
         AnttilaFinal.play();
         AnttilaFinal.setGain(-10);
-        
+
         AntonyFinal.pause();
         AntifaHelp.pause();
-        
       } else if (dialogueCount == 1 || dialogueCount >= 6 ) {
         //antony
         image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
         characterName = "Antony";
-        
+
         AntonyFinal.play();
         AntonyFinal.setGain(-10);
-        
+
         AnttilaFinal.pause();
         AntifaHelp.pause();
-        
       } else if (dialogueCount == 2) {
         //queen antifa
         image( antifaCropped, xPosChar0 - 230, yPosChar0, charSizeX, charSizeY );
         characterName = "Queen Antifa";
-        
+
         AntifaHelp.play();
         AntifaHelp.setGain(-10);
-        
+
         AnttilaFinal.pause();
         AntonyFinal.pause();
       }
@@ -152,19 +148,16 @@ public class Dialogue {
     }
 
     if (dialogueCount >= a.size()) {
-
-      if (switchLevel == 10) {
-        dialogue = true;
-        level = 3;
-        dialogueCount = 0;
+      if ( switchLevel == 10) {
+        fadeOut = true;
       } else {
-
         dialogue = false;
         game = true;
         level = switchLevel;
       }
     }
   }
+
 
   void allDialogue() {
     dialogueOne(dialogueOne);
