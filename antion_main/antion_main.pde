@@ -88,7 +88,7 @@ void draw() {
     }
 
     if (key == '1') {
-      startTimer = second();
+      startTimer = millis();
       level = 1;
       println("game one");
     }
