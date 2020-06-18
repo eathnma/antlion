@@ -1,9 +1,13 @@
 boolean buttonPressed;
 int buttonX, buttonY, buttonW, buttonH;
+PImage startScreen;
  
 void setupStartScreen() {
   
   buttonPressed = false;
+  
+  // loading the image into the sketch
+  startScreen = loadImage("startscreen.png");
  
   // Some basic parameters for a button
   buttonW = 200;
@@ -14,7 +18,7 @@ void setupStartScreen() {
 }
  
 void drawStartScreen() {
-  background(255);
+  background(startScreen);
   if (buttonPressed) {
     // The code related to your game
     println("The button has been pressed");
@@ -31,6 +35,7 @@ void mousePressed() {
   if (mouseX > buttonX && 
       mouseX < buttonX+buttonW && 
       mouseY > buttonY && 
-      mouseY < buttonY+buttonH+buttonW+30)
-    buttonPressed = true;
+      mouseY < buttonY+buttonH+buttonW+30){
+        fade = true;
+      }
 }
