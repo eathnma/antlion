@@ -31,7 +31,7 @@ void setupMiniGame1() {
   bg_MiniGame1 = loadImage("game2.png");
   antony_0 = loadImage("Antony__0.png");
 
-  startTimer = second();
+  startTimer = millis();
   fUck = false;
 
   //minim object initialization
@@ -50,13 +50,13 @@ void setupMiniGame1() {
 void drawMiniGame1()
 {
   if (fUck == false) {
-    startTimer = second();
+    startTimer = millis();
     fUck = true;
   }
   background(0);
   imageMode(CORNER);
   image(bg_MiniGame1, 0, 0);
-  currentTimer = second() - startTimer;
+  currentTimer = millis() - startTimer;
   fill(255, 255, 255);
   textSize(30);
   text("Score: " + score, 100, 50);
@@ -75,37 +75,37 @@ void drawMiniGame1()
   }
 
   //spawns in notes based on seconds passed since level started
-  if (currentTimer == 1) {
+if (currentTimer >= 1000 && currentTimer < 2000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 9), 2, guideSize, red));
   } 
-  if (currentTimer == 2) {
+  if (currentTimer >= 2000 && currentTimer < 3000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 8), 2, guideSize, blue));
   } 
-  if (currentTimer == 3) {
+  if (currentTimer >= 3000 && currentTimer < 4000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 9), 2, guideSize, red));
   } 
-  if (currentTimer >= 4 && currentTimer <= 6) {
+  if (currentTimer >= 4000 && currentTimer < 8000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 6), 2, guideSize, green));
   } 
-  if (currentTimer == 8) {
+  if (currentTimer >= 8000 && currentTimer < 9000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 9), 2, guideSize, red));
   } 
-  if (currentTimer == 9) {
+  if (currentTimer >= 9000 && currentTimer < 10000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 8), 2, guideSize, blue));
   } 
-  if (currentTimer >= 10 && currentTimer < 12) {
+  if (currentTimer >= 10000 && currentTimer < 12000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 7), 2, guideSize, yellow));
   } 
-  if (currentTimer == 12) {
+  if (currentTimer >= 12000 && currentTimer < 13000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 6), 2, guideSize, green));
   } 
-  if (currentTimer >= 13 && currentTimer < 15) {
+  if (currentTimer >= 13000 && currentTimer < 15000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 7), 2, guideSize, yellow));
   } 
-  if (currentTimer == 15) {
+  if (currentTimer >= 15000 && currentTimer < 16000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 8), 2, guideSize, blue));
   } 
-  if (currentTimer == 16) {
+  if (currentTimer >= 16000 && currentTimer < 17000) {
     notes.add(new Notes(width, height - ((height/nFreqBand) * 7), 2, guideSize, yellow));
   }
 
