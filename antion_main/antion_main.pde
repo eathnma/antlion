@@ -2,8 +2,9 @@
 int level = 3;
 int startTimer;
 
-boolean game = true;
-boolean dialogue = false;
+boolean game = false;
+boolean dialogue = true;
+int dialogueCount = 1;
 
 import ddf.minim.*;
 Minim minim;
@@ -29,7 +30,6 @@ void setup() {
   setupMiniGame0();
   setupMiniGame1();
   setupMiniGame3();
- 
 }
 
 void draw() {
@@ -93,25 +93,23 @@ void gameState(int lv) {
       break;
 
     case 1:
-      // beginning dialogue
-      myDialogue.drawDialogue("beginningDialogue", 0);
+      myDialogue.counter(dialogueOne);
       break;
 
     case 2:
-      // first-game dialogue
-      myDialogue.drawDialogue("hehe", 0);
+      myDialogue.counter(dialogueOneEnd);
       break;
 
     case 3:
-      // second-game dialogue
+      myDialogue.counter(minigameOne);
       break;
 
     case 4:
-      // third-game dialogue
+      myDialogue.counter(mingameTwo);
       break;
 
     case 5:
-      // end-game dialogue
+      myDialogue.counter(mingameThree);
       break;
 
     case 6:
@@ -174,6 +172,13 @@ void gameState(int lv) {
     if (key == ' ') {
       jump = false;
       space3 = false;
+      
+      // shooting minigame 3
       play.shooting = true;
+      // dialogue minigame
+      dialogueCount = dialogueCount + 1;
+      
+      // to reset the char
+      myDialogue.counter = 0;
     }
   }
