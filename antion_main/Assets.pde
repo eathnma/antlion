@@ -30,6 +30,9 @@ AudioPlayer AntonyFinal;
 AudioPlayer AntifaHelp;
 AudioPlayer AntifaFinal;
 
+// Narration Music
+AudioPlayer NarrationMusic;
+
 // Setup
 void setupImages(){
   
@@ -59,6 +62,8 @@ void setupMusic(){
   AnttilaFinal = minim.loadFile("ANTONY_FINAL.mp3");
   AntonyGross = minim.loadFile("ANTONY_GROSSLINE_MINIGAME3.mp3");
   AntonyFinal = minim.loadFile("ANTONY_FINAL_MINIGAME3.mp3");
-  AntifaHelp = minim.loadFile("ANTIFA_HELP.mp3");
-  AntifaFinal = minim.loadFile("ANTIFA_FINAL.mp3");
+  AntifaHelp = minim.loadFile("ANTIFA_HELP.wav");
+  AntifaFinal = minim.loadFile("ANTIFA_FINAL.wav");
+  
+  NarrationMusic = minim.loadFile("NARRATOR_BACKGROUND_MUSIC.mp3");
 }
