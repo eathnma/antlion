@@ -32,7 +32,7 @@ void setupMiniGame1() {
   antony_0 = loadImage("Antony__0.png");
 
   startTimer = millis();
-  score=0;
+  score = 0;
   fUck = false;
 
   //minim object initialization

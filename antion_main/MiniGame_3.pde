@@ -106,27 +106,27 @@ class Player extends Chara {
     if ( fullCharge < 90 && fullCharge > 75 )
     {
       raidList.add( new Projectile( pos.copy(), new PVector( 0, -10), 10, 50, raidImg ) );
-      shotDamage = 1;
+      shotDamage = 4;
     } else if ( fullCharge < 75 && fullCharge > 60  )
     {
       raidList.add( new Projectile( pos.copy(), new PVector( 0, -15), 15, 60, raidImg ) );
-      shotDamage = 2;
+      shotDamage = 8;
     } else if ( fullCharge < 60 && fullCharge > 45  )
     {
       raidList.add( new Projectile( pos.copy(), new PVector( 0, -20), 20, 70, raidImg ) );
-      shotDamage = 3;
+      shotDamage = 12;
     } else if ( fullCharge < 45 && fullCharge > 30 )
     {
       raidList.add( new Projectile( pos.copy(), new PVector( 0, -25), 25, 80, raidImg ) );
-      shotDamage = 4;
+      shotDamage = 16;
     } else if ( fullCharge < 30 && fullCharge > 15 )
     {
       raidList.add( new Projectile( pos.copy(), new PVector( 0, -30), 30, 90, raidImg ) );
-      shotDamage = 5;
+      shotDamage = 20;
     } else if ( fullCharge < 15 )
     {
       raidList.add( new Projectile( pos.copy(), new PVector( 0, -35), 40, 100, raidImg ) );
-      shotDamage =  6;
+      shotDamage =  24;
     }
 
     reload = true;
@@ -290,7 +290,7 @@ class Antilla extends Chara {
   Antilla( int diam, PVector pos, PVector vel) {
     super(diam, pos, vel);
     diam = 5;
-    health = 50;
+    health = 100;
   }
 
   void update() {

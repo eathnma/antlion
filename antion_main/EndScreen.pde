@@ -14,9 +14,9 @@ void drawKissQueen() {
 
   //if (r) {
   imageMode(CORNER);
+  image(kissQueen2, 0, 0);
   textSize(50);
   fill(255);
   text("NICE! YOU ARE A FANTASTIC KISSER!", 600, 400);
-  image(kissQueen2, 0, 0);
   //}
 }

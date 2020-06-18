@@ -33,9 +33,9 @@ AudioPlayer minigame1Song;
 AudioPlayer minigame2Song;    
 AudioPlayer minigame3Song;
 
-int narration1Timer = 14;
-int narration2Timer = 11;
-int narration3Timer = 8;
+int narration1Timer = 1400;
+int narration2Timer = 1100;
+int narration3Timer = 800;
 
 boolean narration1Finished;
 
