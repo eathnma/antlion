@@ -25,6 +25,18 @@ void drawMiniGame3() {
   play.update();
   antilla.update();
   
+  if (play.health <= 0) {
+    fill(0);
+    rect(0, 0, 1200, 800);
+    fill(255);
+    textSize(50);
+    text("YOU LOSE! PRESS R TO RESTART!", 600, 400);
+    if (r) {
+      play.health = 36;
+      antilla.health = 100;
+    }
+  }
+  
   // movement options
   if (up3) play.accelerate(upForce);
   if (down3) play.accelerate(downForce);
@@ -52,7 +64,7 @@ class Player extends Chara {
     super(diam, pos, vel);
     pos = new PVector ( xpos, ypos );
     vel = new PVector ( xspeed, yspeed );
-    health = 3;
+    health = 36;
   }
 
   void update() {
@@ -146,13 +158,13 @@ class Player extends Chara {
     tdAntonyHurt2.resize(diam,diam);
     tdAntonyDead.resize(diam,diam);
     // antony slowly dying :(
-    if ( this.health == 3) {
+    if ( this.health <= 36 && this.health > 24) {
       image(tdAntony, 0,0);
       //fill( #E67E22 );
-    } else if ( this.health == 2) {
+    } else if ( this.health <= 24 && this.health > 12) {
       image(tdAntonyHurt1, 0,0);
       //fill( #E77714 );
-    } else if ( this.health == 1) {
+    } else if ( this.health <= 12 && this.health > 0) {
       image(tdAntonyHurt2, 0,0);
       //fill( #D86C0D );
     } else if ( this.health <= 0) {

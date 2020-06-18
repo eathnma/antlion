@@ -25,9 +25,14 @@ color yellow = color(253, 255, 56);
 Guide g = new Guide(10, guideY, guideSize, guideSize);
 ArrayList<Notes> notes = new ArrayList<Notes>();
 
+boolean fUck = false;
+
 void setupMiniGame1() {
   bg_MiniGame1 = loadImage("game2.png");
   antony_0 = loadImage("Antony__0.png");
+
+  startTimer = second();
+  fUck = false;
 
   //minim object initialization
   minim = new Minim(this);
@@ -44,13 +49,17 @@ void setupMiniGame1() {
 //20= 818-861(G#5), 21= 861-904(A5), 22= 904-947(A#5), 23= 947-991(B5), 24= 991-1034(not music LOL), 25= 1034-1076(C6)
 void drawMiniGame1()
 {
+  if (fUck == false) {
+    startTimer = second();
+    fUck = true;
+  }
   background(0);
   imageMode(CORNER);
-  image(bg_MiniGame1, 0,0);
+  image(bg_MiniGame1, 0, 0);
   currentTimer = second() - startTimer;
-  fill(255,255,255);
+  fill(255, 255, 255);
   textSize(30);
-  text("Score: " + score, 70, 50);
+  text("Score: " + score, 100, 50);
 
   //analyzes audio from input mix
   fft.forward(in.mix);
@@ -118,24 +127,31 @@ void drawMiniGame1()
   g.tick();
   g.draw();
 
+  println(startTimer);
+  println(currentTimer);
+  println(r);
+  println(fUck);
+
   //lose/win conditions go here
-  if (score >= 500) {
+  if (currentTimer == 31 && score >= 500) {
     println("YOU ARE WORTHY...");
-      // SWITCH SCREEN HERE
-      imageMode(CORNER);
-      game=false;
-      dialogue=true;
-      dialogueCount=0;
-      level=3;
-  } else {
-    println("YOU ARE NOT WORTHY!");
-  if(currentTimer==18 && score <500){
-   setupMiniGame1();
-   drawMiniGame1();
-   startTimer = second();
-   score=0;
+    // SWITCH SCREEN HERE
+    imageMode(CORNER);
+    game=false;
+    dialogue=true;
+    dialogueCount=0;
+    level=3;
   }
-    
+
+  if (currentTimer >= 31 && score < 500) {
+    fill(0);
+    rect(0, 0, 1200, 800);
+    fill(255);
+    textSize(50);
+    text("YOU LOSE! PRESS R TO RESTART!", 600, 400);
+    if (r) {
+      setupMiniGame1();
+    }
   }
 }
 
@@ -158,8 +174,8 @@ class Guide {
     //colorMode(RGB);
     //fill(255, 255, 255);
     //rect(x, y, w, h);
-    antony_0.resize(100,100);
-    image(antony_0, x+20,y-10);
+    antony_0.resize(100, 100);
+    image(antony_0, x+20, y-10);
   }
 
   //the screen is divided into 30 rows, each row correlates to a frequency band
