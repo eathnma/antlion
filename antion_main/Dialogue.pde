@@ -8,10 +8,10 @@ ArrayList<String> minigameThree = new ArrayList<String>();
 public class Dialogue {
 
   PFont f;
-  
+
   // load image
-  PImage textBoxArt, antonyCropped;
-  
+  PImage textBoxArt, antonyCropped, antifaCropped;
+
   private String text;
   private int position;
   private int counter = 0;
@@ -42,80 +42,66 @@ public class Dialogue {
     this.text = text;
     textBoxArt = loadImage("textbox.png");
     antonyCropped = loadImage("AntonyCropped.png");
+    antifaCropped = loadImage("AntifaCropped.png");
     f = createFont("suez.ttf", 30);
   }
 
-  void character(int character, int position) {
-    // specify drawing class here * i'll handle the animation of the characters. Think about imageMode center
-
-    if (character == 0) {
-    } // antony, paste image
-    if (character == 1) {
-    } // antagonist, paste image 
-    if (character == 2) {
-    } // antagonist 2, paste image
-    if (character == 3) {
-    } // antagonist 3, paste image
-
-    // position 0 = left
-    //if (position == 0) {
-      //println("position 0");
-      image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
-    //}
-
-    //// position 1 = right
-    //if (position == 1) {
-    //  // position determines where the rectangle sits
-    //  //println("position 1");
-    //  fill(200);
-    //  rect( xPosChar1, yPosChar1, charSize, charSize );
-    //}
-    
-  }
-
-  void typewriteText(String text) {
+  void typewriteText(String text, int character) {
     String textBox = text.substring(0, counter);
 
     if (counter < text.length()) {
-      if (frameCount %   2 == 0)
+      if (frameCount %  1 == 0)
         counter++;
     } else if (counter == text.length()) {
       textBox = textBox + " _";
       char flashingUnderscore = textBox.charAt(textBox.length() - 1);
       // can't figure out how to flash a single string item. Will figure out that soon.
     }
-    
-    character(1,1);
+
+    String characterName = " ";
+    if (character == 0) {
+      image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
+      characterName = "Antony";
+    }
+    if (character == 1) {
+      image( antifaCropped, xPosChar0 - 230, yPosChar0, charSizeX, charSizeY );
+      characterName = "Queen Antifa";
+    } 
+
+    if (character == 2) {
+    } // antagonist 2, paste image
+    if (character == 3) {
+    } // antagonist 3, paste image
+
 
     // print out the character one by one
     image(textBoxArt, 50, 500, 1083, 233);
     fill(#472600);
     textAlign(LEFT);
     text(textBox, xPosText, yPosText, width, height);
-    
+
     pushMatrix();
     fill(#FFFFFF);
     textFont(f);
     textAlign(CENTER);
-    text("Antony", -290, 512, width, height);
+    text(characterName, -290, 512, width, height);
     popMatrix();
-    
-    
   }
 
-  void counter(ArrayList a) {
+  void counter(ArrayList <String> a, int character, int switchLevel) {
+    println(dialogueCount);
     try {
-      typewriteText(dialogueOne.get(dialogueCount));
+      typewriteText(a.get(dialogueCount), character);
     } 
     catch(Exception e) {
       println("dialogue Over");
     }
     if (dialogueCount >= a.size()) {
-      //
+      dialogue = false;
+      game = true;
+      level = switchLevel;
     }
   }
-  
-  
 
   void allDialogue() {
     dialogueOne(dialogueOne);
@@ -154,7 +140,8 @@ public class Dialogue {
     a.add("Maybe if I just scream my lungs out, he’ll spit me out!");
 
     a.add("Hey you, player! Be my voice!");
-    a.add("Sing high notes to move me up the screen and go low to move me down!");
+    a.add("Sing high notes to move me up...");
+    a.add("and go low to move me down!");
     a.add("If we get a good enough score, maybe I’ll be able to get out... ");
     a.add("Hope you’ve watched a few episodes of Antmerican Idol!");
   }
@@ -166,17 +153,14 @@ public class Dialogue {
     a.add("Wait, no. FANTASTIC!");
     a.add("FANTASTIC!");
     a.add("If I use my imaginary telekinetic powers to push the acid back...");
-    a.add("maybe Anttila will get an upset stomach and he’ll puke me out instead!");
-    
+    a.add("Maybe Anttila will get an upset stomach and he’ll puke me out instead!");
+
     a.add("Hey you, player!");
     a.add("Click on the stomach acid as fast as you can so we can push it back!");
     a.add("Be careful though, choose where you click!");
-    a.add("Hey you, player!");
-    a.add("Hey you, player!");
-    a.add("Hey you, player!");
   }
-  
-   void minigameThreeDialogue(ArrayList a) {
+
+  void minigameThreeDialogue(ArrayList a) {
     a.add("*BLEGHHHH*");
     a.add("Gross.");
     a.add("Cripple! Help me!");
@@ -184,15 +168,14 @@ public class Dialogue {
     a.add("Did you know I can shoot antlions from my mouth?");
     a.add("Time for you to die.");
     a.add("maybe Anttila will get an upset stomach and he’ll puke me out instead!");
-    
+
     a.add("Well, Raid sponsors me so I can shoot their cans from MY mouth.");
     a.add("My Queen, get behind me and I’ll protect you.");
     a.add("Time to show this goon who can shoot the farthest.");
   }
-  
+
   void endScreen(ArrayList a) {
     a.add("I’ve never seen such battle prowess...who are y-");
     a.add("Shhhhhhh…give me a kiss and I’ll tell you my name.");
   }
-  
 }

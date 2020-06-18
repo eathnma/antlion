@@ -1,12 +1,12 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 3;
+int level = 2;
 int startTimer;
 int goodTimer;
 int badTimer;
 
 boolean game = false;
 boolean dialogue = true;
-int dialogueCount = 1;
+int dialogueCount = 0;
 
 // fading in and out animation
 boolean fade;
@@ -164,25 +164,27 @@ void gameState(int lv) {
 
     case 1:
       background(bg_MiniGame0);
-      myDialogue.counter(dialogueOne);
+      myDialogue.counter(dialogueOne, 0, 0);
       break;
 
     case 2:
-      background(bg_MiniGame1);
-      myDialogue.counter(dialogueOneEnd);
+      background(bg_MiniGame0);
+      myDialogue.counter(dialogueOneEnd, 0, 1); //multiple people speaking
       break;
 
     case 3:
-      background(bg_MiniGame3);
-      myDialogue.counter(minigameOne);
+      background(bg_MiniGame1);
+      myDialogue.counter(minigameOne, 0, 2);
       break;
 
     case 4:
-      myDialogue.counter(minigameTwo);
+      background(bg_MiniGame2);
+      myDialogue.counter(minigameTwo, 0, 3);
       break;
 
     case 5:
-      myDialogue.counter(minigameThree);
+      background(bg_MiniGame3);
+      myDialogue.counter(minigameThree, 1, 4); // multiple people speaking
       break;
 
     case 6:
