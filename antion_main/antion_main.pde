@@ -5,7 +5,12 @@ int goodTimer;
 int badTimer;
 
 boolean game = false;
-boolean dialogue = true;
+boolean dialogue = false;
+
+boolean narration1 = true;
+boolean narration2 = false;
+boolean narration3 = false;
+
 int dialogueCount = 1;
 
 import ddf.minim.*;
@@ -21,6 +26,12 @@ AudioPlayer minigame1Song;
 AudioPlayer minigame2Song;
 AudioPlayer minigame3Song;
 
+int narration1Timer =  1400;
+int narration2Timer = 1100;
+int narration3Timer = 800;
+
+boolean narration1Finished;
+
 void setup() {
   // load helper class
   myUtil = new Util();
@@ -31,7 +42,7 @@ void setup() {
   smooth();
 
   myDialogue = new Dialogue("test dialogue");
-  
+
   // setup for dialogue
   myDialogue.allDialogue();
 
@@ -50,6 +61,9 @@ void setup() {
   minigame1Song = minim.loadFile("MINIGAME 1-2 BACKGROUND MUSIC.mp3");
   minigame2Song = minim.loadFile("MINIGAME 1-2 BACKGROUND MUSIC.mp3");
   minigame3Song = minim.loadFile("MINIGAME 3 BACKGROUND MUSIC.mp3");
+
+  setupImages();
+  setupMusic();
 }
 
 void draw() {
@@ -139,8 +153,6 @@ void gameState(int lv) {
       platformerSong.pause();
       minigame1Song.pause();
       minigame2Song.pause();
-
-
       break;
     }
   }  
@@ -154,7 +166,7 @@ void gameState(int lv) {
       break;
 
     case 1:
-      
+
       myDialogue.counter(dialogueOne);
       break;
 
@@ -176,6 +188,78 @@ void gameState(int lv) {
 
     case 6:
       // lose state dialogue
+      break;
+    }
+  }
+
+  if (narration1 == true) {
+    switch(lv) {
+
+    case 0:
+      drawScene1();
+
+      playNarrationScene1();
+      playNarrationMusic();
+
+      stopNarrationScene2();
+      stopNarrationScene3();
+
+      narration1Timer--;
+      println(narration1Timer);
+
+      if (narration1Timer<=0) { 
+        narration2=true;
+
+        stopNarrationScene1();
+      }
+
+      break;
+    }
+  }
+
+
+  if (narration2 == true) {
+    switch(lv) {
+    case 1:
+      drawScene2();
+
+      playNarrationScene2();
+
+      stopNarrationScene1();
+      stopNarrationScene3();
+
+      narration2Timer--;
+      println(narration2Timer);
+
+      if (narration2Timer<=0) {
+
+        narration3=true;
+
+        stopNarrationScene2();
+      }
+
+      break;
+    }
+  }
+
+  if (narration3 == true) {
+    switch(lv) {
+    case 2:
+      drawScene3();
+
+      playNarrationScene3();
+
+      stopNarrationScene1();
+      stopNarrationScene2();
+
+      narration3Timer--;
+      println(narration3Timer);
+
+      if (narration3Timer<=0) {
+  
+        stopNarrationScene3();
+      }
+
       break;
     }
   }
@@ -212,7 +296,7 @@ void keyReleased() {
 
   if (keyCode == UP || key == 'w' || key == 'W') up3 = false;
   if (keyCode == DOWN || key == 's' || key == 'S') down3 = false;
-  
+
   if (key == 'a' || key == 'A' || keyCode == LEFT) {
     left = false;
     left3 = false;
@@ -227,9 +311,9 @@ void keyReleased() {
     jump = false;
     space3 = false;
     play.shooting = true;
-    
-     dialogueCount = dialogueCount + 1;
-      // to reset the char
-      myDialogue.counter = 0;
+
+    dialogueCount = dialogueCount + 1;
+    // to reset the char
+    myDialogue.counter = 0;
   }
 }
