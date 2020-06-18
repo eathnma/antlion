@@ -1,5 +1,5 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 5;
+int level = 2;
 int startTimer;
 int goodTimer;
 int badTimer;

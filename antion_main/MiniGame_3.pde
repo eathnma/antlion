@@ -305,7 +305,7 @@ class Antilla extends Chara {
     float bounce = 1.0;
 
     if (pos.x + diam >= 1200 || pos.x - diam <= 0) {
-      bounce = bounce + 0.08;
+      bounce = bounce + 0.02;
       vel.set(vel.x * -1 * bounce, vel.y);
     }
   }
