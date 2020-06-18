@@ -291,7 +291,7 @@ void gameState(int lv) {
 
 
 // Booleans
-boolean left, right, jump;
+boolean left, right, jump, r;
 // keyPressed
 void keyPressed() {
 
@@ -314,6 +314,8 @@ void keyPressed() {
     space3 = true;
     jump = true;
   }
+  
+  if (key == 'r' || key == 'R') r = true;
 }
 
 // keyReleased
@@ -331,6 +333,8 @@ void keyReleased() {
     right = false;
     right3 = false;
   }
+  
+  if (key == 'r' || key == 'R') r = false;
 
   if (key == ' ') {
     jump = false;
