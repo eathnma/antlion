@@ -10,7 +10,7 @@ public class Dialogue {
   PFont f;
 
   // load image
-  PImage textBoxArt, antonyCropped, antifaCropped;
+  PImage textBoxArt, antonyCropped, antifaCropped, antillaCropped;
 
   private String text;
   private int position;
@@ -43,6 +43,7 @@ public class Dialogue {
     textBoxArt = loadImage("textbox.png");
     antonyCropped = loadImage("AntonyCropped.png");
     antifaCropped = loadImage("AntifaCropped.png");
+    antillaCropped = loadImage("AntillaCropped.png");
     f = createFont("suez.ttf", 30);
   }
 
@@ -70,9 +71,17 @@ public class Dialogue {
 
     if (character == 2) {
       // antagonist 2, paste image
-      
-      
+      println(dialogueCount);
+      if (dialogueCount == 0 || dialogueCount == 1 || dialogueCount == 2 || dialogueCount == 3) {
+        image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
+        characterName = "Antony";
+      } else if ( dialogueCount == 4 || dialogueCount == 5) {
+        image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
+        characterName = "Antilla the Hun";
+      }
     }
+
+
     if (character == 3) {
     } // antagonist 3, paste image
 
