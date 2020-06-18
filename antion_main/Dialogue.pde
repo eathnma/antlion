@@ -76,15 +76,26 @@ public class Dialogue {
         image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
         characterName = "Antony";
       } else if ( dialogueCount == 4 || dialogueCount == 5) {
-        image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
+        image( antillaCropped, xPosChar0 + 400, yPosChar0, 600, 400 );
         characterName = "Antilla the Hun";
       }
     }
 
-
     if (character == 3) {
-    } // antagonist 3, paste image
-
+      if (dialogueCount == 0 || dialogueCount == 3 || dialogueCount == 4 || dialogueCount == 5) {
+        //antilla
+        image( antillaCropped, xPosChar0 + 400, yPosChar0, 600, 400 );
+        characterName = "Antilla the Hun";
+      } else if (dialogueCount == 1 || dialogueCount >= 6 ) {
+        //antony
+        image( antonyCropped, xPosChar0, yPosChar0, charSizeX, charSizeY );
+        characterName = "Antony";
+      } else if (dialogueCount == 2) {
+        //queen antifa
+        image( antifaCropped, xPosChar0 - 230, yPosChar0, charSizeX, charSizeY );
+        characterName = "Queen Antifa";
+      }
+    }
 
     // print out the character one by one
     image(textBoxArt, 50, 500, 1083, 233);
@@ -114,6 +125,7 @@ public class Dialogue {
       if (switchLevel == 10) {
         dialogue = true;
         level = 3;
+        dialogueCount = 0;
         println("size count over works");
       } else {
 
@@ -188,11 +200,16 @@ public class Dialogue {
     a.add("How in the...no matter.");
     a.add("Did you know I can shoot antlions from my mouth?");
     a.add("Time for you to die.");
-    a.add("maybe Anttila will get an upset stomach and he’ll puke me out instead!");
 
     a.add("Well, Raid sponsors me so I can shoot their cans from MY mouth.");
     a.add("My Queen, get behind me and I’ll protect you.");
     a.add("Time to show this goon who can shoot the farthest.");
+    
+    a.add("Hey you, player!");
+    a.add("I'm gonna tell you the instructions really quick so listen up!");
+    a.add("Shoot the boss with my raid cans using SPACE");
+    a.add("You can hold space for a more powerful shot, but its up to you!");
+    a.add("WASD to move. Don't' get hit by the antlions.");
   }
 
   void endScreen(ArrayList a) {

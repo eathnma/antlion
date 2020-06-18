@@ -1,5 +1,5 @@
 // SWITCH STATE OF GAMEPLAY
-int level = 2;
+int level = 5;
 int startTimer;
 int goodTimer;
 int badTimer;
@@ -166,7 +166,7 @@ void gameState(int lv) {
 
     case 1:
       background(bg_MiniGame0);
-      myDialogue.counter(dialogueOne, 0, 1);
+      myDialogue.counter(dialogueOne, 0, 0);
       break;
 
     case 2:
@@ -186,7 +186,7 @@ void gameState(int lv) {
 
     case 5:
       background(bg_MiniGame3);
-      myDialogue.counter(minigameThree, 2, 3); // multiple people speaking
+      myDialogue.counter(minigameThree, 3, 3); // multiple people speaking
       break;
 
     case 6:
