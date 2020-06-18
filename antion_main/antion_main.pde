@@ -39,7 +39,7 @@ void setup() {
 
   // setup for dialogue
   myDialogue.allDialogue();
-  
+
   // load scene images
   scene1 = loadImage("Scene1.png");
   scene2 = loadImage("Scene2.png");
@@ -94,6 +94,7 @@ void draw() {
 
   gameState(level);
 }
+
 
 void gameState(int lv) {
   if (game == true) {
@@ -159,32 +160,33 @@ void gameState(int lv) {
     switch(lv) {
 
     case 0:
-      fade(1);
+      if(fade == true) fade(1);
+      drawStartScreen();
       break;
 
     case 1:
       background(bg_MiniGame0);
-      myDialogue.counter(dialogueOne, 0, 0);
+      myDialogue.counter(dialogueOne, 0, 1);
       break;
 
     case 2:
       background(bg_MiniGame0);
-      myDialogue.counter(dialogueOneEnd, 0, 1); //multiple people speaking
+      myDialogue.counter(dialogueOneEnd, 2, 10); //multiple people speaking
       break;
 
     case 3:
       background(bg_MiniGame1);
-      myDialogue.counter(minigameOne, 0, 2);
+      myDialogue.counter(minigameOne, 0, 1);
       break;
 
     case 4:
       background(bg_MiniGame2);
-      myDialogue.counter(minigameTwo, 0, 3);
+      myDialogue.counter(minigameTwo, 0, 2);
       break;
 
     case 5:
       background(bg_MiniGame3);
-      myDialogue.counter(minigameThree, 1, 4); // multiple people speaking
+      myDialogue.counter(minigameThree, 2, 3); // multiple people speaking
       break;
 
     case 6:
@@ -192,7 +194,10 @@ void gameState(int lv) {
       break;
     }
   }
+
 }
+
+
 
 // Booleans
 boolean left, right, jump;
@@ -247,18 +252,15 @@ void keyReleased() {
   }
 }
 
-void fade(int level) {
-  // timer goes quick
-  fadeTimer--;
-  
-  // draws the rectangle
-  fill( 255, transparency );
-  rect( 0, 0, width, height );
-  
-  // transparency 
+void fade(int lv) {
   if ( transparency < 255 ) {
     transparency = transparency + 1;
-  } else if ( transparency > 255 ) {
-    println("game state change!");
+  } else if ( transparency >= 255 ) {
+    level = lv;
   }
+  
+  println(transparency);
+  
+  fill( 0, transparency );
+  rect( 0, 0, width, height );
 }

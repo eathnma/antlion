@@ -69,7 +69,10 @@ public class Dialogue {
     } 
 
     if (character == 2) {
-    } // antagonist 2, paste image
+      // antagonist 2, paste image
+      
+      
+    }
     if (character == 3) {
     } // antagonist 3, paste image
 
@@ -96,10 +99,19 @@ public class Dialogue {
     catch(Exception e) {
       println("dialogue Over");
     }
+
     if (dialogueCount >= a.size()) {
-      dialogue = false;
-      game = true;
-      level = switchLevel;
+
+      if (switchLevel == 10) {
+        dialogue = true;
+        level = 3;
+        println("size count over works");
+      } else {
+
+        dialogue = false;
+        game = true;
+        level = switchLevel;
+      }
     }
   }
 
@@ -124,12 +136,12 @@ public class Dialogue {
   }
 
   void dialogueOneEnd(ArrayList a) {
-    a.add("That was easy.");
-    a.add("Way too easy.");
-    a.add("“One does not simply jump into Myrdor,” Elder Boromant said.");
-    a.add("Well, I’m about to-");
-    a.add("The cripple fell for my trap. Fool.");
-    a.add("He will never survive my treacherous insides.");
+    a.add("That was easy."); //0
+    a.add("Way too easy."); //1
+    a.add("“One does not simply jump into Myrdor,” Elder Boromant said."); //2
+    a.add("Well, I’m about to-"); //3
+    a.add("The cripple fell for my trap. Fool."); //4
+    a.add("He will never survive my treacherous insides."); //5
   }
 
   void minigameOneDialogue(ArrayList a) {
